@@ -1,5 +1,5 @@
 <p align="center">
-<img src="img/logo-jti.png" width="300">
+<img src="img/logo-jti.png" width="100">
 </p>
 
 <h1 align="center"> JTI Website</h1>
