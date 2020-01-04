@@ -52,95 +52,86 @@ $kelasUser = $rowUser["id_kelas"];
         </div>
         <!-- jika sudah terverifikasi -->
         <?php
-        if(isset($_POST["cariJadwal"]))
-        { 
-          $queryVerifikasi = jadwalKuliahCariStatusVerifikasi($con,$idMhsUser,$_POST["semester"]);
+        if (isset($_POST["cariJadwal"])) {
+          $queryVerifikasi = jadwalKuliahCariStatusVerifikasi($con, $idMhsUser, $_POST["semester"]);
           $resultVerifikasi = mysqli_fetch_assoc($queryVerifikasi);
-          if($resultVerifikasi["status_verifikasi"] == "Sudah")
-          {
-          ?>
-        <div class="col-md-12 p-1 text-center alert alert-success alert-dismissible fade show" role="alert">
-          <p>Sudah Terverifikasi oleh DPA</p>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <!-- end if -->
-        <?php } else {}
+          if ($resultVerifikasi["status_verifikasi"] == "Sudah") {
+        ?>
+            <div class="col-md-12 p-1 text-center alert alert-success alert-dismissible fade show" role="alert">
+              <p>Sudah Terverifikasi oleh DPA</p>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <!-- end if -->
+        <?php } else {
+          }
         } ?>
         <form action="?module=jadwal" class="p-0 m-0" method="post">
           <select class="semester custom-select" style="width:250px" name="semester">
             <option selected disabled>-</option>
-            <?php 
-            $resultSemester=semester($con); 
-            if(mysqli_num_rows($resultSemester))
-            {
-                while($rowSemester=mysqli_fetch_assoc($resultSemester))
-                {
-                  if($rowSemester["id_semester"] == $_POST["semester"])
-                  {
-                    $selected = "selected";
-                  }
-                  else
-                  {
-                    $selected = "";
-                  }
-                ?>
-            <option <?php echo $selected; ?> value="<?php echo $rowSemester["id_semester"];?>">
-              Semester <?php echo $rowSemester["semester"];?>
-            </option>
             <?php
+            $resultSemester = semester($con);
+            if (mysqli_num_rows($resultSemester)) {
+              while ($rowSemester = mysqli_fetch_assoc($resultSemester)) {
+                if ($rowSemester["id_semester"] == $_POST["semester"]) {
+                  $selected = "selected";
+                } else {
+                  $selected = "";
                 }
+            ?>
+                <option <?php echo $selected; ?> value="<?php echo $rowSemester["id_semester"]; ?>">
+                  Semester <?php echo $rowSemester["semester"]; ?>
+                </option>
+            <?php
+              }
             }
-          ?>
+            ?>
           </select>
           <button type="submit" name="cariJadwal" class="tmbl-filter btn btn-success ml-2">Filter</button>
-          <a href="?module=kelasKosong"><button type="button"
-              class="tmbl-ruangan btn btn-info float-right">Ruangan</button></a>
+          <a href="?module=kelasKosong"><button type="button" class="tmbl-ruangan btn btn-info float-right">Ruangan</button></a>
         </form>
         <br>
         <?php
-        if(isset($_POST["cariJadwal"])){
-          $resultJadwalKuliah = jadwalKuliahCariSemester($con,$prodiUser,$kelasUser,$_POST["semester"]);
+        if (isset($_POST["cariJadwal"])) {
+          $resultJadwalKuliah = jadwalKuliahCariSemester($con, $prodiUser, $kelasUser, $_POST["semester"]);
+        } else {
+          $resultJadwalKuliah = jadwalKuliah($con, $prodiUser, $kelasUser);
         }
-        else{
-          $resultJadwalKuliah = jadwalKuliah($con,$prodiUser,$kelasUser);
-        }
-        if (mysqli_num_rows($resultJadwalKuliah) > 0)
-        {
+        if (mysqli_num_rows($resultJadwalKuliah) > 0) {
         ?>
-        <table class="table table-striped table-bordered">
-          <thead class="text-white bg-blue">
-            <tr>
-              <th scope="col">No</th>
-              <th scope="col">Nama Mata Kuliah</th>
-              <th scope="col">Dosen</th>
-              <th scope="col">Hari</th>
-              <th scope="col">SKS/JAM</th>
-              <th scope="col">Ruang</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-              $no=1;
-              while($row = mysqli_fetch_assoc($resultJadwalKuliah)){
+          <table class="table table-striped table-bordered">
+            <thead class="text-white bg-blue">
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama Mata Kuliah</th>
+                <th scope="col">Dosen</th>
+                <th scope="col">Hari</th>
+                <th scope="col">SKS/JAM</th>
+                <th scope="col">Ruang</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $no = 1;
+              while ($row = mysqli_fetch_assoc($resultJadwalKuliah)) {
               ?>
-            <tr>
-              <td><?php echo $no;?></td>
-              <td><?php echo $row["nm_matkul"]; ?></td>
-              <td><?php echo $row["nama"]; ?></td>
-              <td><?php echo $row["hari"]; ?></td>
-              <td><?php echo $row["sks"]; ?> SKS / <?php echo $row["jam"]; ?> JAM</td>
-              <td><?php echo $row["kode"]; ?> (Lt<?php echo $row["lantai"]; ?>)</td>
-            </tr>
-            <?php
-              $no++;
-            }
-            ?>
-          </tbody>
-        </table>
+                <tr>
+                  <td><?php echo $no; ?></td>
+                  <td><?php echo $row["nm_matkul"]; ?></td>
+                  <td><?php echo $row["nama"]; ?></td>
+                  <td><?php echo $row["hari"]; ?></td>
+                  <td><?php echo $row["sks"]; ?> SKS / <?php echo $row["jam"]; ?> JAM</td>
+                  <td><?php echo $row["kode"]; ?> (Lt<?php echo $row["lantai"]; ?>)</td>
+                </tr>
+              <?php
+                $no++;
+              }
+              ?>
+            </tbody>
+          </table>
       </div>
-      <?php } else { ?>
+    <?php } else { ?>
       <center>
         <div class="warna-card col-md-12 border border-danger mt-3">
           <div class="teks card-body" style="position: center">
@@ -150,5 +141,5 @@ $kelasUser = $rowUser["id_kelas"];
             <p class="card-text">- Anda belum menempuh semester ini</p>
           </div>
       </center>
-      <?php } ?>
+    <?php } ?>
     </div>

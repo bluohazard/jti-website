@@ -2,7 +2,7 @@
 $(".tampil-detail").click(function () {
   var id_mahasiswa = $(this).attr("data-mhs");
   var id_semester = $(this).attr("data-semester");
-  
+
   $.ajax({
     url: "../process/proses_khs.php",
     method: "post",
@@ -22,7 +22,7 @@ $(".tampil-detail").click(function () {
 $(".edit-nilai").click(function () {
   var id_mahasiswa = $(this).attr("data-mhs");
   var id_semester = $(this).attr("data-semester");
-  
+
   $.ajax({
     url: "../process/proses_khs.php",
     method: "post",
@@ -42,7 +42,7 @@ $(".edit-nilai").click(function () {
 $(".update-nilai").click(function () {
   var id_mahasiswa = $(this).attr("data-mhs");
   var id_semester = $(this).attr("data-semester");
-  
+
   $.ajax({
     url: "../process/proses_khs.php",
     method: "post",
@@ -57,6 +57,3 @@ $(".update-nilai").click(function () {
   });
 });
 // KHS MODAL UPLOAD END
-
-
-

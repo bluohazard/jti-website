@@ -1,7 +1,7 @@
-#kelasKosong #dataKelasKosongMhs{
-  max-height:67vh;
+#kelasKosong #dataKelasKosongMhs {
+  max-height: 67vh;
   overflow-y: auto;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 #kelasKosong .btn-hari,
@@ -11,6 +11,7 @@
   height: 1.8em;
   padding: 0;
 }
+
 #kelasKosong .btn-hari:not(.active):hover {
   border: 1px solid rgb(122, 188, 247);
   background: rgb(122, 188, 247);
@@ -65,7 +66,7 @@
   border-radius: 10px;
 }
 
-.popover *{
+.popover * {
   color: red;
   text-align: center;
 }

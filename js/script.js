@@ -1,22 +1,22 @@
-$("#navigation-btn").click(function() {
+$("#navigation-btn").click(function () {
   $("#navigation")
     .stop()
     .fadeIn(300);
 });
 
-$("#navigation").click(function() {
+$("#navigation").click(function () {
   $("#navigation")
     .stop()
     .fadeOut(300);
 });
 
-$("#navigation-admin-btn").click(function() {
+$("#navigation-admin-btn").click(function () {
   $("#navigation-admin")
     .stop()
     .fadeIn(300);
 });
 
-$("#navigation-admin-close, #navigation-admin-close2").click(function() {
+$("#navigation-admin-close, #navigation-admin-close2").click(function () {
   $("#navigation-admin")
     .stop()
     .fadeOut(300);
@@ -45,18 +45,18 @@ function showPassword() {
 $("#datepicker").datepicker();
 
 // lightbox(preview gambar)
-$(document).on("click", '[data-toggle="lightbox"]', function(event) {
+$(document).on("click", '[data-toggle="lightbox"]', function (event) {
   event.preventDefault();
   $(this).ekkoLightbox();
 });
 
 // Initialize tooltip component
-$(function() {
+$(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
 
 //   Popover
-$(function() {
+$(function () {
   $('[data-toggle="popover"]').popover();
   $('[data-trigger="focus"]').popover();
 });
@@ -190,21 +190,21 @@ function validasiSubmitEditKriteria() {
 // End Validasi Kriteria Kuisioner
 
 //Tooltip Berita
-$(document).ready(function() {
+$(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 });
 
 // chat
 // $(".chat-popup").hide();
 
-$("#toggleChat").click(function() {
+$("#toggleChat").click(function () {
   $("#chatPopup").show();
   reload();
   refresh();
   $("#globalInputChat").focus();
 });
 
-$("#closeChatPopup").click(function() {
+$("#closeChatPopup").click(function () {
   $("#chatPopup").hide();
 });
 
@@ -216,8 +216,7 @@ prevChat = null;
 function bottomScroll() {
   $("#globalChatWindow")
     .stop()
-    .animate(
-      {
+    .animate({
         scrollTop: $("#globalChatWindow")[0].scrollHeight * 3
       },
       800
@@ -232,7 +231,7 @@ function reload() {
 
 function refresh() {
   clearInterval();
-  setInterval(function() {
+  setInterval(function () {
     console.log("Mahasiswa E-Complain: Refreshed");
     // cek apakah search kosong
     chat();
@@ -248,7 +247,7 @@ function chat() {
       tampilChat: 1,
       idUser: idUser
     },
-    success: function(response) {
+    success: function (response) {
       // console.log(response);
 
       // remove the deleted comment
@@ -268,12 +267,12 @@ function chat() {
   });
 }
 
-$(document).on("click", ".global-btn-send", function() {
+$(document).on("click", ".global-btn-send", function () {
   kirimChat();
 });
 
 // detect enter
-$("#globalInputChat").keydown(function(e) {
+$("#globalInputChat").keydown(function (e) {
   if (e.keyCode == 13) {
     kirimChat();
   }
@@ -292,7 +291,7 @@ function kirimChat() {
         isiChat: isiChat,
         idUser: idUser
       },
-      success: function(response) {
+      success: function (response) {
         console.log(response);
 
         $("#globalInputChat").val("");

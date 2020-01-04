@@ -290,26 +290,26 @@ body {
 }
 
 /* Table */
-.table-striped > thead > tr > th {
+.table-striped>thead>tr>th {
   padding: 0.4em;
   padding-left: 0.7em;
   padding-right: 0.7em;
 }
 
-.table-striped > thead > tr > th {
+.table-striped>thead>tr>th {
   background-color: #40407a;
   color: white;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td {
+.table-striped>tbody>tr:nth-child(odd)>td {
   background-color: #ceceef;
 }
 
-.table-striped > tbody > tr:nth-child(even) > td {
+.table-striped>tbody>tr:nth-child(even)>td {
   background-color: #ececff;
 }
 
-.table-striped > tbody > tr > td {
+.table-striped>tbody>tr>td {
   font-size: 1em;
   padding: 0.3em;
 }

@@ -1,12 +1,13 @@
-#adminBerita .table-striped > thead > tr > th {
+#adminBerita .table-striped>thead>tr>th {
     background-color: #40407a;
     color: white;
 }
-#adminBerita .table-striped > tbody > tr:nth-child(odd) > td {
+
+#adminBerita .table-striped>tbody>tr:nth-child(odd)>td {
     background-color: #ceceef;
 }
-  
-#adminBerita .table-striped > tbody > tr:nth-child(even) > td {
+
+#adminBerita .table-striped>tbody>tr:nth-child(even)>td {
     background-color: #ececff;
 }
 
@@ -17,7 +18,7 @@
     height: 35px;
 }
 
-#adminBerita .ber{
+#adminBerita .ber {
     margin-top: -10px;
 }
 
@@ -29,11 +30,11 @@
 }
 
 #adminBerita .border-secondary {
-    border-color: solid rgba(90, 90, 90, 0.52)!important;
+    border-color: solid rgba(90, 90, 90, 0.52) !important;
 }
 
-#adminBerita .border{
-    border: 1px solid rgba(90, 90, 90, 0.52)!important;
+#adminBerita .border {
+    border: 1px solid rgba(90, 90, 90, 0.52) !important;
     border-radius: 5px;
 }
 
@@ -55,7 +56,7 @@
     background-color: #CF212A;
     color: white;
 }
-  
+
 #adminBerita .btn-iya {
     padding: 0em 1.5em 0em 1.5em;
     margin-left: 5em;
@@ -72,17 +73,17 @@
     padding-bottom: 2em;
 }
 
-#adminBerita .btn-kirim{
+#adminBerita .btn-kirim {
     height: 1.6em;
     padding-bottom: 0;
     padding-top: 0;
 }
 
-#adminBerita .lampir img{
+#adminBerita .lampir img {
     cursor: pointer;
 }
 
-#adminBerita .btn-tutup{
+#adminBerita .btn-tutup {
     background-color: #CF212A;
     border-radius: 10px;
     font-size: 12px;
@@ -91,48 +92,51 @@
     padding-right: 1em;
 }
 
-#adminBerita #beritaBerita{
+#adminBerita #beritaBerita {
     width: 28em;
 }
 
-#adminBerita .pilihKategoriBerita{
+#adminBerita .pilihKategoriBerita {
     border-radius: 10px;
     height: 1.8em;
-	padding-left: 5px;
+    padding-left: 5px;
 }
 
 #adminBerita .download {
     width: 40% !important;
 }
+
 #adminBerita .isi-download a {
     text-decoration: none;
     color: black;
 }
+
 #adminBerita .isi-download a:hover {
     text-decoration: none;
     color: black;
 }
-#adminBerita .isi-download button:hover{
+
+#adminBerita .isi-download button:hover {
     background-color: white;
 }
 
-#adminBerita .tgl{
+#adminBerita .tgl {
     border: 0.45em solid gray;
     background-color: gray;
     border-radius: 0px 5px 5px 0px;
 }
 
-#adminBerita .fa-calendar-alt{
+#adminBerita .fa-calendar-alt {
     font-size: 20px;
     color: white;
 }
 
-#adminBerita .input-group-addon{
+#adminBerita .input-group-addon {
     border: 0.45em solid gray;
     background-color: gray;
     border-radius: 0px 5px 5px 0px;
-  }
-  
+}
+
 #adminBerita img[title]:hover::before {
     content: attr(data-title);
     position: absolute;
@@ -144,13 +148,13 @@
     font-size: 12px;
     font-family: sans-serif;
     white-space: nowrap;
-  }
-  
+}
+
 #adminBerita img[title]:hover::after {
     content: '';
     position: absolute;
     left: 8px;
     display: inline-block;
     color: #fff;
-    border: 8px solid transparent;	
-  }
+    border: 8px solid transparent;
+}

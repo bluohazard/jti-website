@@ -50,23 +50,23 @@ function recentChatSearch() {
   }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   reload();
 
   refresh();
 
-  $(document).on("click", ".recent-chat-item", function() {
+  $(document).on("click", ".recent-chat-item", function () {
     idUserTujuan = $(this).data("id");
     reload();
     $("#inputChat").prop("disabled", false);
   });
 
-  $(document).on("click", ".btn-send", function() {
+  $(document).on("click", ".btn-send", function () {
     kirimChat();
   });
 
   // detect enter
-  $("#inputChat").keydown(function(e) {
+  $("#inputChat").keydown(function (e) {
     if (e.keyCode == 13) {
       kirimChat();
     }
@@ -85,7 +85,7 @@ $(document).ready(function() {
           idUser: idUser,
           idUserTujuan: idUserTujuan
         },
-        success: function(response) {
+        success: function (response) {
           $("#inputChat").val("");
           reload();
         }
@@ -99,8 +99,7 @@ $(document).ready(function() {
   function bottomSCroll() {
     $("#chatWindow")
       .stop()
-      .animate(
-        {
+      .animate({
           scrollTop: $("#chatWindow")[0].scrollHeight * 2
         },
         800
@@ -117,7 +116,7 @@ $(document).ready(function() {
 
   function refresh() {
     clearInterval();
-    setInterval(function() {
+    setInterval(function () {
       console.log("Admin E-Complain: Refreshed");
       // cek apakah search kosong
       if ($.trim($("input[type=text]").val()) == "") {
@@ -140,7 +139,7 @@ $(document).ready(function() {
         idUser: idUser,
         idUserTujuan: userTujuanId
       },
-      success: function(response) {
+      success: function (response) {
         $("#recentChat")
           .empty()
           .append(response);
@@ -158,7 +157,7 @@ $(document).ready(function() {
         idUser: idUser,
         idUserTujuan: userTujuanId
       },
-      success: function(response) {
+      success: function (response) {
         // remove the deleted comment
         if (prevChat == null) {
           prevChat = response;
@@ -186,7 +185,7 @@ $(document).ready(function() {
         idUser: idUser,
         idUserTujuan: userTujuanId
       },
-      success: function(response) {
+      success: function (response) {
         $("#namaUserTujuan")
           .empty()
           .append(response);

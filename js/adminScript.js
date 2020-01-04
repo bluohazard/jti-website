@@ -43,8 +43,7 @@ $.ajax({
 
     var chartdata = {
       labels: label,
-      datasets: [
-        {
+      datasets: [{
           label: 'TI',
           backgroundColor: '#40407A',
           data: jumlahTI
@@ -110,13 +109,11 @@ $.ajax({
 
     var chartdata = {
       labels: label,
-      datasets: [
-        {
-          label: 'Dosen',
-          backgroundColor: '#40407A',
-          data: jumlahDosen
-        }
-      ]
+      datasets: [{
+        label: 'Dosen',
+        backgroundColor: '#40407A',
+        data: jumlahDosen
+      }]
     };
 
     var ctx1 = $("#dosenPerTahun")
@@ -160,13 +157,11 @@ $.ajax({
 
     var chartdata = {
       labels: label,
-      datasets: [
-        {
-          label: 'Berita',
-          backgroundColor: '#59ACE7',
-          data: jumlah
-        }
-      ]
+      datasets: [{
+        label: 'Berita',
+        backgroundColor: '#59ACE7',
+        data: jumlah
+      }]
     };
 
     var ctx2 = $("#beritaPerBulan")
@@ -239,8 +234,7 @@ $.ajax({
 
     var chartdata = {
       labels: label,
-      datasets: [
-        {
+      datasets: [{
           label: 'TI',
           backgroundColor: '#40407A',
           data: jumlahTI

@@ -1,12 +1,14 @@
-$(document).ready(function() {
-  $(".lihat-detail").click(function() {
+$(document).ready(function () {
+  $(".lihat-detail").click(function () {
     var id_dosen = $(this).attr("id");
 
     $.ajax({
       url: "../process/proses_kuisioner.php",
       method: "post",
-      data: { namaDosen: id_dosen },
-      success: function(data) {
+      data: {
+        namaDosen: id_dosen
+      },
+      success: function (data) {
         $("#id_dosen").val(id_dosen);
         $("#judul").html(data);
         $("#modalLihatHasil").modal("show");
@@ -14,7 +16,7 @@ $(document).ready(function() {
     });
   });
 
-  $("#cariKuisionerDosen").click(function() {
+  $("#cariKuisionerDosen").click(function () {
     $.ajax({
       url: "../process/proses_kuisioner.php",
       method: "post",
@@ -24,50 +26,56 @@ $(document).ready(function() {
         tahun: $("#tahun").val(),
         semester: $("#semester").val()
       },
-      success: function(data) {        
+      success: function (data) {
         $("#tableDataKuisionerDosen").html(data);
         $("#modalLihatHasil").modal("show");
       }
     });
   });
 
-  $("#cariKuisionerPerKelas").click(function() {
+  $("#cariKuisionerPerKelas").click(function () {
     $.ajax({
       url: "../process/proses_kuisioner.php",
       method: "post",
-      data: { lihatPerKelas: $("#id_kelas").val() },
-      success: function(data) {
+      data: {
+        lihatPerKelas: $("#id_kelas").val()
+      },
+      success: function (data) {
         $("#tableData").html(data);
         $("#modalLihatperKelas").modal("show");
       }
     });
   });
 
-  $("#hentikanKuisioner").click(function() {
+  $("#hentikanKuisioner").click(function () {
     $.ajax({
       url: "../process/proses_kuisioner.php",
       method: "post",
-      data: { hentikan: $(this).attr("id") },
-      success: function() {
+      data: {
+        hentikan: $(this).attr("id")
+      },
+      success: function () {
         alert("Kuisioner berhasil dihentikan");
         document.location.href = "?module=kuisioner";
       }
     });
   });
 
-  $("#aktifkanKuisioner").click(function() {
+  $("#aktifkanKuisioner").click(function () {
     $.ajax({
       url: "../process/proses_kuisioner.php",
       method: "post",
-      data: { aktifkan: $(this).attr("id") },
-      success: function() {
+      data: {
+        aktifkan: $(this).attr("id")
+      },
+      success: function () {
         alert("Kuisioner berhasil diaktifkan");
         document.location.href = "?module=kuisioner";
       }
     });
   });
 
-  $(".modal").on("hidden.bs.modal", function() {
+  $(".modal").on("hidden.bs.modal", function () {
     $("#id_kelas").val(0);
     $("#kelas").val(0);
     $("#tahun").val(0);
@@ -84,14 +92,16 @@ $(document).ready(function() {
     );
   });
 
-  $(".edit-kriteria").click(function() {
+  $(".edit-kriteria").click(function () {
     var edit_kuisioner = $(this).attr("id");
 
     $.ajax({
       url: "../process/proses_kuisioner.php",
       method: "post",
-      data: { edit_kuisioner: edit_kuisioner },
-      success: function(data) {
+      data: {
+        edit_kuisioner: edit_kuisioner
+      },
+      success: function (data) {
         $("#id_kuisionerEdit").val(edit_kuisioner);
         $("#editIsiKriteria").val(data);
         $("#modalEditKriteria").modal("show");
@@ -99,7 +109,7 @@ $(document).ready(function() {
     });
   });
 
-  $(".hapus-kriteria").click(function() {
+  $(".hapus-kriteria").click(function () {
     var id_kuisioner = $(this).attr("id");
     $("#id_kuisionerHapus").val(id_kuisioner);
     $("#modalHapusKriteria").modal("show");
@@ -107,23 +117,27 @@ $(document).ready(function() {
 });
 
 // Search kuisioner berdasarkan tahun dan semester
-$("#cariKuisioner").click(function() {
+$("#cariKuisioner").click(function () {
   var tahun, semester;
-  tahun=$("#tahunKuisioner option:selected").val();
+  tahun = $("#tahunKuisioner option:selected").val();
   semester = $("#semesterKuisioner option:selected").val();
 
   $.ajax({
     url: "../process/proses_kuisioner.php",
     method: "post",
-    data: { cariKuisioner: true, tahun: tahun, semester: semester },
-    success: function(data) {
+    data: {
+      cariKuisioner: true,
+      tahun: tahun,
+      semester: semester
+    },
+    success: function (data) {
       $("#dataDosenKuisioner").html(data);
     }
   });
 });
 
 // Search Kuisioner Dosen
-$("#txtCariDosenKuisioner").keyup(function() {
+$("#txtCariDosenKuisioner").keyup(function () {
   var input,
     filter,
     itemDosenKuisioner,
@@ -176,7 +190,7 @@ $("#txtCariDosenKuisioner").keyup(function() {
 });
 
 // Search Kriteria Kuisioner
-$("#txtCariKriteria").keyup(function() {
+$("#txtCariKriteria").keyup(function () {
   var input, filter, itemKriteria, kriteria, i, txtValueKriteria, totalInactive;
   input = $("#txtCariKriteria");
   filter = $(input)

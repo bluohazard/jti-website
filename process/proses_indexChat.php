@@ -97,7 +97,7 @@ if (isset($_GET["tampilChat"])) {
     $prev = '';
     while ($rowChat = mysqli_fetch_assoc($resultChat)) {
       if (tampilLevelUser($con, $rowChat["penerima"]) == tampilLevelUser($con, $idUser)) {
-        ?>
+?>
         <div class="row global-chat-kiri px-3 py-1 <?php echo (($prev != 'kiri') ? 'pt-3' : ''); ?>">
           <div class="col">
             <div class="row">
@@ -117,10 +117,10 @@ if (isset($_GET["tampilChat"])) {
           </div>
         </div>
 
-        <?php
+      <?php
         $prev = 'kiri';
       } elseif (tampilLevelUser($con, $rowChat["pengirim"]) == tampilLevelUser($con, $idUser)) {
-        ?>
+      ?>
         <div class="row global-chat-kanan px-3 py-1 <?php echo (($prev != 'kanan')  ? 'pt-3' : ''); ?>">
           <div class="col">
             <div class="row">
@@ -139,7 +139,7 @@ if (isset($_GET["tampilChat"])) {
             </div>
           </div>
         </div>
-        <?php
+    <?php
         $prev = 'kanan';
       }
     }
@@ -153,7 +153,7 @@ if (isset($_GET["tampilChat"])) {
       </div>
     </div>
   <?php
-}
+  }
 }
 
 if (isset($_GET["tampilNamaUserTujuan"])) {
@@ -161,7 +161,7 @@ if (isset($_GET["tampilNamaUserTujuan"])) {
   $idUserTujuan = $_GET['idUserTujuan'];
 
   if ($idUserTujuan != null) {
-    ?>
+  ?>
     <img class="chat-profile-photo" src="../attachment/img/avatar.png">
     <h5 class="m-0 ml-3">
       <?php
@@ -174,8 +174,8 @@ if (isset($_GET["tampilNamaUserTujuan"])) {
       }
       ?>
     </h5>
-  <?php
-}
+<?php
+  }
 }
 
 if (isset($_POST['sendChat'])) {

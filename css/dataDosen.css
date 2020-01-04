@@ -10,6 +10,7 @@
 #dataDosen .title {
   font-size: 1.09em;
 }
+
 #dataDosen .loadgambar {
   margin-left: 17px;
   width: 22%;
@@ -28,25 +29,27 @@
 #dataDosen .breadcrumb a:hover {
   color: #000000a9;
 }
+
 #dataDosen #icon-search {
   width: 1.5em;
   color: gray;
   margin-right: 1em;
 }
 
-#dataDosen .table-striped > thead > tr > th {
+#dataDosen .table-striped>thead>tr>th {
   background-color: #40407a;
   color: white;
 }
 
-#dataDosen .table-striped > tbody > tr:nth-child(odd) > td {
+#dataDosen .table-striped>tbody>tr:nth-child(odd)>td {
   background-color: #ceceef;
 }
 
-#dataDosen .table-striped > tbody > tr:nth-child(even) > td {
+#dataDosen .table-striped>tbody>tr:nth-child(even)>td {
   background-color: #ececff;
 }
-#tabelDosen .table-striped > tbody > tr > td {
+
+#tabelDosen .table-striped>tbody>tr>td {
   font-size: 1em;
   padding-bottom: 0.6em;
   padding-top: 0.6em;
@@ -84,6 +87,7 @@
   background-color: #3aac5f;
   color: white;
 }
+
 .tombolAksiHapusKompen {
   padding-bottom: 2em;
 }
@@ -91,6 +95,7 @@
 #editModal #edit {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 #editModal .loadgambar {
   margin-left: 17px;
   width: 36%;

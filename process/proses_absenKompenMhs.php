@@ -22,7 +22,6 @@ function absensi($con)
 function tampil($con)
 {
     $tampil="select * from tabel_absensi";
-    $resultTampil = mysqli_query($con, $absen);
-    return $resultAbsen;
+    $resultTampil = mysqli_query($con, $tampil);
+    return $resultTampil;
 }
-?>

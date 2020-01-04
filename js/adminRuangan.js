@@ -1,18 +1,22 @@
-$("#cariKelasKosongAdmin").click(function() {
+$("#cariKelasKosongAdmin").click(function () {
   var radioHari = $("input[name='hari']:checked").val(),
     jam = $("#jamKelasKosongAdmin").val();
 
   $.ajax({
     url: "../process/proses_adminRuangan.php",
     method: "post",
-    data: { cariKelasKosong: true, hari: radioHari, jam: jam },
-    success: function(data) {
+    data: {
+      cariKelasKosong: true,
+      hari: radioHari,
+      jam: jam
+    },
+    success: function (data) {
       $("#daftar-ruangan").html(data);
     }
   });
 });
 
-$("#txtCariPemesanan").keyup(function() {
+$("#txtCariPemesanan").keyup(function () {
   var input,
     filter,
     itemPemesanan,
@@ -85,7 +89,7 @@ $("#txtCariPemesanan").keyup(function() {
   }
 });
 
-$("#txtCariRuangan").keyup(function() {
+$("#txtCariRuangan").keyup(function () {
   var input,
     filter,
     itemRuangan,
@@ -133,28 +137,30 @@ $("#txtCariRuangan").keyup(function() {
   }
 });
 
-$(".hapus-ruang").click(function() {
+$(".hapus-ruang").click(function () {
   var id_ruang = $(this).attr("id");
   $("#id_ruangHapus").val(id_ruang);
 });
 
-$(".checkout-ruang-admin").click(function() {
+$(".checkout-ruang-admin").click(function () {
   var id_ruang_dipinjam = $(this).attr("id");
   $("#id_ruang_dipinjam").val(id_ruang_dipinjam);
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
   refreshAdminRuang();
 });
 
 function refreshAdminRuang() {
   clearInterval();
-  setInterval(function() {
+  setInterval(function () {
     $.ajax({
       url: "../process/proses_adminRuangan.php",
       method: "post",
-      data: { autoCheckout: true },
-      success: function() {
+      data: {
+        autoCheckout: true
+      },
+      success: function () {
         reloadRuangan();
       }
     });
@@ -173,8 +179,10 @@ function pemesananRuang() {
   $.ajax({
     url: "../process/proses_adminRuangan.php",
     method: "post",
-    data: { reloadPemesanan: true },
-    success: function(data) {
+    data: {
+      reloadPemesanan: true
+    },
+    success: function (data) {
       $("#pemesanan-ruang").html(data);
     }
   });
@@ -188,8 +196,12 @@ function ruangKosong() {
   $.ajax({
     url: "../process/proses_adminRuangan.php",
     method: "post",
-    data: { cariKelasKosong: true, hari: radioHari, jam: jam },
-    success: function(data) {
+    data: {
+      cariKelasKosong: true,
+      hari: radioHari,
+      jam: jam
+    },
+    success: function (data) {
       $("#daftar-ruangan").html(data);
     }
   });
@@ -200,8 +212,10 @@ function ruangDipesan() {
   $.ajax({
     url: "../process/proses_adminRuangan.php",
     method: "post",
-    data: { ruangDipesan: true },
-    success: function(data) {
+    data: {
+      ruangDipesan: true
+    },
+    success: function (data) {
       $("#ruang-dipesan").html(data);
     }
   });

@@ -5,6 +5,7 @@
 #home .isi-mhs {
   color: black;
 }
+
 #home .kategori-label {
   padding: 2px 10px 4px 10px;
   background-color: #c4c4c4;
@@ -12,11 +13,13 @@
   border-radius: 10px;
   font-size: 0.9em;
 }
+
 #home .isi-beasiswa {
   font-size: 0.7em;
   word-break: break-all;
   white-space: normal;
 }
+
 #home .check {
   width: 7.5em;
   padding-bottom: 3.5px;
@@ -34,6 +37,7 @@
   text-decoration: none;
   color: white;
 }
+
 #home .search-null {
   font-size: 12px;
 }
@@ -85,11 +89,13 @@
 #home .isi-kuisioner {
   font-size: 18px;
 }
+
 #home input[type="radio"] {
   width: 18px;
   height: 18px;
   margin-top: 7px;
 }
+
 /* CSS foto */
 #home .photos .image {
   cursor: pointer;
@@ -97,6 +103,7 @@
   overflow: hidden;
   padding-bottom: 100%;
 }
+
 #home .photos .image img {
   position: absolute;
   width: 100%;
@@ -130,10 +137,12 @@
 #home .download {
   width: 100% !important;
 }
+
 #home .isi-download a {
   text-decoration: none;
   color: black;
 }
+
 #home .isi-download a:hover {
   text-decoration: none;
   color: black;
@@ -148,10 +157,12 @@
   width: 50%;
   background-color: #40407a;
 }
+
 #home .back a {
   text-decoration: none;
   color: white;
 }
+
 #home .back:hover {
   background-color: rgba(64, 64, 122, 0.548);
   color: white;

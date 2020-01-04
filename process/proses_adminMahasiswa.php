@@ -554,4 +554,3 @@ if(isset($_POST["editMahasiswa_idMahasiswa"])){
     echo $output.="Data Kosong";
   }
 }
-?>

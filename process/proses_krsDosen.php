@@ -87,6 +87,3 @@ if(isset($_POST["tambahTask"]) || isset($_POST["submitKompenDosen"]) || isset($_
         header('location:../module/index.php?module=' . $_GET["module"]);
     }
 }
-
-
-?>

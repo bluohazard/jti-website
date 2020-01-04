@@ -14,4 +14,3 @@ foreach ($result as $row) {
 mysqli_close($con);
 
 echo json_encode($data);
-?>

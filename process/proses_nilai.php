@@ -141,5 +141,4 @@ function khsNilai($con, $id_mahasiswa, $id_semester){
   } else{
       return 0;
   }
-} 
-?>
+}

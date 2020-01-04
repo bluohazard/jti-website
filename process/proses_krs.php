@@ -28,5 +28,3 @@ function krsCariStatusVerifikasi($con, $idMahasiswa, $semester)
     $resultKrsCariStatusVerifikasi = mysqli_query($con,$krsCariStatusVerifikasi);
     return $resultKrsCariStatusVerifikasi;
 }
-
-?>

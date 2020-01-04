@@ -155,7 +155,7 @@ if (isset($_GET["tampilRecentChat"])) {
 
   if (mysqli_num_rows($resultRecentChat) > 0) {
     while ($rowRecentChat = mysqli_fetch_assoc($resultRecentChat)) {
-      ?>
+?>
       <div data-id="<?php echo $rowRecentChat['recent_user'] ?>" class="row recent-chat-item border-bottom border-gray p-3 <?php echo ($idUserTujuan == $rowRecentChat["recent_user"]) ? 'active' : ''; ?>">
         <div class="col-md-auto p-0">
           <img class="chat-profile-photo" src="../attachment/img/avatar.png">
@@ -185,9 +185,9 @@ if (isset($_GET["tampilRecentChat"])) {
         </div>
       </div>
     <?php
-  }
-} else {
-  ?>
+    }
+  } else {
+    ?>
     <div class="row align-items-center justify-content-center h-100 pb-5">
       <div class="col mb-5 text-center">
         <div class="row">
@@ -208,13 +208,13 @@ if (isset($_GET["tampilRecentChat"])) {
     </div>
     </div>
   <?php
-}
-?>
+  }
+  ?>
 
-<div id='infoTidakDitemukan' class='row pt-5' style='display:none'>
-<div  class='infoTidakDitemukan col text-center text-muted'>Pencarian tidak dapat ditemukan</div>
-</div>
-<?php
+  <div id='infoTidakDitemukan' class='row pt-5' style='display:none'>
+    <div class='infoTidakDitemukan col text-center text-muted'>Pencarian tidak dapat ditemukan</div>
+  </div>
+  <?php
 }
 
 if (isset($_GET["tampilChat"])) {
@@ -227,16 +227,16 @@ if (isset($_GET["tampilChat"])) {
     $prev = '';
     while ($rowChat = mysqli_fetch_assoc($resultChat)) {
       if (tampilLevelUser($con, $rowChat["penerima"]) == tampilLevelUser($con, $idUser)) {
-        ?>
+  ?>
         <div class="row chat-kiri px-3 py-1 <?php echo (($prev != 'kiri') ? 'pt-3' : ''); ?>">
           <div class="photo-container p-0">
             <?php
             if ($prev != 'kiri') {
-              ?>
+            ?>
               <img class="chat-window-profile-photo" src="../attachment/img/avatar.png">
             <?php
-          }
-          ?>
+            }
+            ?>
           </div>
           <div class="col">
             <div class="row">
@@ -256,10 +256,10 @@ if (isset($_GET["tampilChat"])) {
           </div>
         </div>
 
-        <?php
+      <?php
         $prev = 'kiri';
       } elseif (tampilLevelUser($con, $rowChat["pengirim"]) == tampilLevelUser($con, $idUser)) {
-        ?>
+      ?>
         <div class="row chat-kanan px-3 py-1 <?php echo (($prev != 'kanan')  ? 'pt-3' : ''); ?>">
           <div class="col">
             <div class="row">
@@ -280,14 +280,14 @@ if (isset($_GET["tampilChat"])) {
           <div class="photo-container p-0 text-right">
             <?php
             if ($prev != 'kanan') {
-              ?>
+            ?>
               <img class="chat-window-profile-photo" src="../attachment/img/avatar.jpeg">
             <?php
-          }
-          ?>
+            }
+            ?>
           </div>
         </div>
-        <?php
+    <?php
         $prev = 'kanan';
       }
     }
@@ -301,7 +301,7 @@ if (isset($_GET["tampilChat"])) {
       </div>
     </div>
   <?php
-}
+  }
 }
 
 if (isset($_GET["tampilNamaUserTujuan"])) {
@@ -309,7 +309,7 @@ if (isset($_GET["tampilNamaUserTujuan"])) {
   $idUserTujuan = $_GET['idUserTujuan'];
 
   if ($idUserTujuan != null) {
-    ?>
+  ?>
     <img class="chat-profile-photo" src="../attachment/img/avatar.png">
     <h5 class="m-0 ml-3">
       <?php
@@ -322,8 +322,8 @@ if (isset($_GET["tampilNamaUserTujuan"])) {
       }
       ?>
     </h5>
-  <?php
-}
+<?php
+  }
 }
 
 if (isset($_POST['sendChat'])) {

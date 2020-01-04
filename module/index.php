@@ -86,7 +86,7 @@ if ($level != 'admin') {
   <!-- navigation mahasiswa & dosen -->
   <?php
   if ($level != "admin") {
-    ?>
+  ?>
     <div id="navigation" class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-12 my-auto">
@@ -103,51 +103,51 @@ if ($level != 'admin') {
                 <p class="mt-3">JADWAL KULIAH</p>
               </div>
             <?php
-          } elseif ($level == "mahasiswa" && $statusPembayaran == "Belum") { ?>
+            } elseif ($level == "mahasiswa" && $statusPembayaran == "Belum") { ?>
               <div onclick="location.href='index.php?module=krs';" class="navigation-menu col-md-3 col-lg-2 my-1">
                 <img src="../img/navigation/jadwalKuliah.svg">
                 <p class="mt-3">JADWAL KULIAH</p>
               </div>
             <?php
-          } elseif ($level == "dosen") {
+            } elseif ($level == "dosen") {
             ?>
               <div onclick="location.href='index.php?module=kelasKosong';" class="navigation-menu col-md-3 col-lg-2 my-1">
                 <img src="../img/navigation/pesanKelas.svg">
                 <p class="mt-3">PESAN KELAS</p>
               </div>
             <?php
-          }
+            }
 
-          if ($level == "mahasiswa") {
+            if ($level == "mahasiswa") {
             ?>
               <div onclick="location.href='index.php?module=nilai';" class="navigation-menu col-md-3 col-lg-2 my-1">
                 <img src="../img/navigation/nilaiMahasiswa.svg">
                 <p class="mt-3">NILAI MAHASISWA</p>
               </div>
             <?php
-          } elseif ($level == "dosen") {
+            } elseif ($level == "dosen") {
             ?>
               <div onclick="location.href='index.php?module=krs';" class="navigation-menu col-md-3 col-lg-2 my-1">
                 <img src="../img/navigation/pengajuanKRS.svg">
                 <p class="mt-3">PENGAJUAN KRS MAHASISWA</p>
               </div>
             <?php
-          }
-          ?>
+            }
+            ?>
             <div onclick="location.href='index.php?module=kompenAbsen';" class="navigation-menu col-md-3 col-lg-2 my-1">
               <?php
               if ($level == "mahasiswa") {
-                ?>
+              ?>
                 <img src="../img/navigation/absensi.svg">
                 <p class="mt-3">ABSENSI & KOMPEN</p>
               <?php
-            } elseif ($level == "dosen") {
+              } elseif ($level == "dosen") {
               ?>
                 <img src="../img/navigation/absensi.svg">
                 <p class="mt-3">KOMPENSASI MAHASISWA</p>
               <?php
-            }
-            ?>
+              }
+              ?>
             </div>
             <div class="col-md-0 col-lg"></div>
           </div>
@@ -155,7 +155,7 @@ if ($level != 'admin') {
       </div>
     </div>
   <?php
-} else {
+  } else {
   ?>
 
     <!-- navbar -->
@@ -342,22 +342,22 @@ if ($level != 'admin') {
     </div>
 
   <?php
-}
-?>
+  }
+  ?>
 
   <!-- navbar -->
   <nav class="app-navbar navbar navbar-expand-md navbar-dark bg-blue shadow-sm sticky-top mb-2">
     <?php
     if ($level == "admin") {
-      ?>
+    ?>
       <a class="ml-5 mr-5" id="navigation-admin-btn"> <i class="fas fa-bars text-white burger-icon"></i></a>
     <?php
-  } else {
+    } else {
     ?>
       <a class="ml-5 mr-5" id="navigation-btn"> <i class="fas fa-bars text-white burger-icon"></i></a>
     <?php
-  }
-  ?>
+    }
+    ?>
     <a class="navbar-brand " href="index.php?module=home"><b>JTI Website</b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -369,23 +369,23 @@ if ($level != 'admin') {
 
         <!-- bagian notification bubble -->
         <?php
-          $jumlah = getJumlahNotifikasiBelumDibaca($con, $idUser);
-          if ($jumlah == 0) {
-            # code...
-          } else {
+        $jumlah = getJumlahNotifikasiBelumDibaca($con, $idUser);
+        if ($jumlah == 0) {
+          # code...
+        } else {
         ?>
-        <span class="fas fa-circle notification-bubble"></span>
-        <span class="notification-bubble-num">
-          <?php
+          <span class="fas fa-circle notification-bubble"></span>
+          <span class="notification-bubble-num">
+            <?php
             if ($jumlah > 9) {
               echo '9+';
             } else {
               echo $jumlah . '&nbsp;';
             }
-          ?>
-        </span>
+            ?>
+          </span>
         <?php
-          }
+        }
         ?>
       </i>
 
@@ -596,7 +596,7 @@ if ($level != 'admin') {
     }
 
     if ($level != "admin") {
-      ?>
+    ?>
       <img id="toggleChat" src="../img/Chat.svg" alt="chat" class="chat-bubble">
 
       <div class="chat-popup row shadow-lg" id="chatPopup">
@@ -629,8 +629,8 @@ if ($level != 'admin') {
         </div>
       </div>
     <?php
-  }
-  ?>
+    }
+    ?>
   </div>
 
   <?php

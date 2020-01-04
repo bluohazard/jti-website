@@ -7,44 +7,51 @@
 #dosenKompen .detail-dosen.border-bottom.border-gray.pb-2.mb-0 {
   margin-top: 1em;
 }
+
 /* kompensasi mahasiswa */
 #dosenKompen .table {
   margin-top: 2em;
 }
 
-#dosenKompen .table-bordered > thead{
+#dosenKompen .table-bordered>thead {
   background-color: #40407a;
   color: white;
 }
 
-#dosenKompen .Sudah-konfirmasi{
+#dosenKompen .Sudah-konfirmasi {
   background-color: #A7FCA5;
 }
-#dosenKompen .Belum-konfirmasi{
+
+#dosenKompen .Belum-konfirmasi {
   background-color: #FCA5A5;
 }
+
 /* #dosenKompen .table-striped > tbody > tr > td {
   background-color: #FCA5A5;
 } */
 
-#dosenKompen .box1{
+#dosenKompen .box1 {
   height: 17px;
   width: 17px;
   background-color: #A7FCA5;
 }
-#dosenKompen .box2{
+
+#dosenKompen .box2 {
   height: 17px;
   width: 17px;
   background-color: #FCA5A5;
 }
-#dosenKompen .sudah{
+
+#dosenKompen .sudah {
   margin-right: 121px;
 }
-#dosenKompen .belum{
+
+#dosenKompen .belum {
   margin-left: 40px;
   padding-left: 40px;
 }
-#dosenKompen .hiya{
+
+#dosenKompen .hiya {
   margin-left: 40px;
   padding-left: 40px;
 }
@@ -53,6 +60,7 @@
 #dosenKompen .judul {
   font-size: 1.2em;
 }
+
 #dosenKompen .pratinjau {
   background: #40407A;
   border-radius: 5px;
@@ -64,23 +72,28 @@
   line-height: normal;
   color: #FFFFFF;
 }
-#dosenKompen .tambah-pekerjaan-kompen{
+
+#dosenKompen .tambah-pekerjaan-kompen {
   background-color: #40407a;
   color: white;
   font-size: 12px;
   font-family: lato;
   width: 190px;
 }
-#dosenKompen td.nomor-kompen{
+
+#dosenKompen td.nomor-kompen {
   width: 0.3em;
 }
-#dosenKompen td.deskripsi-kompen{
+
+#dosenKompen td.deskripsi-kompen {
   width: 15em;
 }
-#dosenKompen td.pilihan-kompen{
+
+#dosenKompen td.pilihan-kompen {
   width: 0.3em;
 }
-#dosenKompen .isi-ada > table {
+
+#dosenKompen .isi-ada>table {
   white-space: nowrap;
 }
 
@@ -89,7 +102,7 @@
   left: -5em;
 }
 
-#dosenKompen .dropdown-kompen::before{
+#dosenKompen .dropdown-kompen::before {
   position: absolute;
   border-width: 0px 8px 10px 8px;
   border-style: solid;
@@ -97,8 +110,8 @@
   border-color: rgb(216, 208, 208) transparent;
 }
 
-#dosenKompen .data-kompen-ada{
-  
+#dosenKompen .data-kompen-ada {
+
   max-height: 30em;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -109,9 +122,11 @@
 #dosenKompen #modalLihat {
   background-color: rgba(0, 0, 0, 0.5)
 }
+
 #dosenKompen #exampleModalCenter {
   background-color: rgba(0, 0, 0, 0.5)
 }
+
 #dosenKompen #tombolAksiHapusKompen {
   background-color: rgba(0, 0, 0, 0.5)
 }
@@ -120,12 +135,12 @@
   padding-right: 0.5em;
 }
 
-#dosenKompen .tambahkan-modal{
+#dosenKompen .tambahkan-modal {
   background-color: #3AAC5F;
   color: white;
   border-radius: 10px;
 }
 
-#dosenKompen .tambahkan-modal-parent{
+#dosenKompen .tambahkan-modal-parent {
   padding-right: 4em;
 }

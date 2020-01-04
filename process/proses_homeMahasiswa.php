@@ -187,31 +187,31 @@ if (isset($_GET["searchBerita"])) {
   $resultSearchBerita = mysqli_query($con, queryTampilPencarianBerita($tglPencarianBerita));
 
   if (mysqli_num_rows($resultSearchBerita) > 0) {
-    ?>
+?>
     <div class="search-know mt-2 pb-2 border-bottom border-gray">
       <h5><strong>Hasil Pencarian</strong></h5>
       <div class="temu-berita ml-2">
         <?php
         while ($rowPencarianBerita = mysqli_fetch_assoc($resultSearchBerita)) {
-          ?>
+        ?>
           <a href="#" class="hasilSearchBerita" data-idinfo="<?php echo $rowPencarianBerita["id_info"] ?>"><?php echo $rowPencarianBerita["judul"] ?></a><br>
         <?php
-      }
-      ?>
+        }
+        ?>
       </div>
     </div>
     <div class="search-back text-center mt-1">
       <a href="">Kembali</a>
     </div>
   <?php
-} else {
+  } else {
   ?>
     <div class="search-null text-center">
       <img src="../img/magnifier.svg" alt="Search Not Found" class="p-3">
       <p>Tidak ada berita pada tanggal "<?php echo date("d M Y", strtotime(formatTanggal($tglPencarianBerita))) ?>"</p>
     </div>
   <?php
-}
+  }
 }
 
 // --------- kirim komentar -----------
@@ -380,13 +380,13 @@ if (isset($_GET['hasilSearchBerita'])) {
         $resultAttachment = attachment($con, $row["id_info"]);
         $resultAttachment2 = attachment($con, $row["id_info"]);
         if (mysqli_num_rows($resultAttachment) > 0) {
-          ?>
+        ?>
           <div class="photos">
             <div class="row">
               <?php
               while ($row = mysqli_fetch_assoc($resultAttachment)) {
                 if ($row["tipe"] == "gambar") {
-                  ?>
+              ?>
                   <div class="col-md-6 p-2">
                     <div class="image">
                       <a href="../attachment/img/<?php echo $row['file']; ?>" data-toggle="lightbox" data-gallery="mixedgallery<?php echo $row['id_info']; ?>">
@@ -395,10 +395,10 @@ if (isset($_GET['hasilSearchBerita'])) {
                     </div>
                   </div>
 
-                <?php
+              <?php
+                }
               }
-            }
-            ?>
+              ?>
             </div>
           </div>
 
@@ -406,7 +406,7 @@ if (isset($_GET['hasilSearchBerita'])) {
             <?php
             while ($row = mysqli_fetch_assoc($resultAttachment2)) {
               if ($row["tipe"] == "file") {
-                ?>
+            ?>
                 <div class="row isi-download">
                   <div class="col-md-12">
                     <button class="btn btn-outline-dark download d-flex">
@@ -421,14 +421,14 @@ if (isset($_GET['hasilSearchBerita'])) {
                     </button>
                   </div>
                 </div>
-              <?php
+            <?php
+              }
             }
-          }
-          ?>
+            ?>
           </div>
         <?php
-      }
-      ?>
+        }
+        ?>
 
       </div>
     </div>

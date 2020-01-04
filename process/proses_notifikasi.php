@@ -12,5 +12,3 @@ if ($_GET['module'] == 'notifikasi' && $_GET['act'] == 'baca' && $_GET['id']) {
   mysqli_query($con, $queryBaca);
   header('location:../module/index.php?module=' . $_GET["module"] . '&act=&id=');
 }
-
-?>

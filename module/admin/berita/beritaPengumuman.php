@@ -31,7 +31,7 @@ include "../process/proses_berita.php";
                         <div class="card-body">
                             <form action="../process/proses_berita.php?module=beritaPengumuman&act=tambah" class="p-0" method="POST" enctype="multipart/form-data">
                                 <div class="form-group berita-utama">
-                                    <input type="text" class="form-control border-0" name="judulBerita" placeholder="Berita Utama ..." style="width=100%">
+                                    <input type="text" class="form-control border-0" name="judulBerita" placeholder="Berita Utama ..." style="width:100%">
                                 </div>
                                 <hr>
                                 <div class="form-group ketik-berita">

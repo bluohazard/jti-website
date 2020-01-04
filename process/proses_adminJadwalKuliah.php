@@ -499,7 +499,4 @@ if(isset($_POST["editJadwal_kelas"]) && isset($_POST["editJadwal_semester"]))
 
 /*
 
-*/ 
-
-?>
-
+*/

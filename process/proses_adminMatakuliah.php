@@ -19,5 +19,3 @@ if(isset($_POST["tambahMatakuliah"]) || isset($_POST["hapusMatakuliah"])){
     header('location:../module/index.php?module=' . $_GET["module"]);
   }
 }
-
-?>

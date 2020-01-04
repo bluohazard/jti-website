@@ -2,7 +2,7 @@
   margin-top: 2em;
 }
 
-#beasiswa .btn-tutup{
+#beasiswa .btn-tutup {
   background-color: #CF212A;
   border-radius: 10px;
   font-size: 12px;
@@ -10,18 +10,19 @@
   padding-left: 1em;
   padding-right: 1em;
 }
-#beasiswa .submitBeasiswa{
-    background-color: #3AAC5F;
-    border-radius: 10px;
-    font-size: 12px;
+
+#beasiswa .submitBeasiswa {
+  background-color: #3AAC5F;
+  border-radius: 10px;
+  font-size: 12px;
 }
 
-#beasiswa .fa-calendar-alt{
+#beasiswa .fa-calendar-alt {
   font-size: 20px;
   color: white;
 }
 
-#beasiswa .input-group-addon{
+#beasiswa .input-group-addon {
   border: 0.45em solid gray;
   background-color: gray;
   border-radius: 0px 5px 5px 0px;

@@ -41,8 +41,7 @@ $statusDaftarUlang = '';
             <div class="m-2 p-3 bg-white rounded shadow-sm">
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125">
-                        <center><img src="../attachment/img/avatar.jpeg" class="gambar-profil img-circle" height="170"
-                                width="170">
+                        <center><img src="../attachment/img/avatar.jpeg" class="gambar-profil img-circle" height="170" width="170">
                         </center>
                         <br><br>
                         <h5 class="border-bottom border-gray pb-2 mb-0" align="center"><?php echo $namaUser; ?></h5>
@@ -57,32 +56,28 @@ $statusDaftarUlang = '';
         <div class="col-md-9 p-0">
             <div class="m-2 p-3 bg-white rounded shadow-sm">
                 <h6 class="border-bottom border-gray pb-2 mb-2"><?php echo $namaProdiUser; ?> -
-                    <?php echo $kodeProdiUser; ?>-<?php echo $tingkatUser; echo $kodeKelasUser; ?></h6>
+                    <?php echo $kodeProdiUser; ?>-<?php echo $tingkatUser;
+                                                    echo $kodeKelasUser; ?></h6>
                 <center>
                     <!-- jika sudah terverifikasi -->
                     <?php
-                    if(isset($_POST["cariKrs"]))
-                    { 
-                        $queryVerifikasi = krsCariStatusVerifikasi($con,$idMahasiswaUser,$_POST["semester"]);
+                    if (isset($_POST["cariKrs"])) {
+                        $queryVerifikasi = krsCariStatusVerifikasi($con, $idMahasiswaUser, $_POST["semester"]);
                         $resultVerifikasi = mysqli_fetch_assoc($queryVerifikasi);
-                        if(($resultVerifikasi["status_daftar_ulang"] == "Sudah") && ($resultVerifikasi["status_verifikasi"] == "Belum"))
-                        {
+                        if (($resultVerifikasi["status_daftar_ulang"] == "Sudah") && ($resultVerifikasi["status_verifikasi"] == "Belum")) {
                     ?>
-                    <div class="col-md-12 p-1 text-center alert alert-danger alert-dismissible fade show" role="alert">
-                        <p>Belum Terverifikasi oleh DPA <?php echo $row["status_daftar_ulang"]; ?></p>
+                            <div class="col-md-12 p-1 text-center alert alert-danger alert-dismissible fade show" role="alert">
+                                <p>Belum Terverifikasi oleh DPA <?php echo $row["status_daftar_ulang"]; ?></p>
 
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <!-- end if -->
-                    <?php } 
-                        else 
-                        {
-
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!-- end if -->
+                    <?php } else {
                         }
-                    } 
-                ?>
+                    }
+                    ?>
                 </center>
                 <div class="media text-muted pt-3">
                     <p class="media-body pb-3 mb-0 small lh-125">
@@ -92,38 +87,30 @@ $statusDaftarUlang = '';
                 <form action="?module=krs" class="p-0 m-0" method="post">
                     <select class="semester custom-select" style="width:250px" name="semester">
                         <option selected disabled>-</option>
-                        <?php 
-                        $resultSemester=semester($con); 
-                        if(mysqli_num_rows($resultSemester))
-                        {
-                            while($rowSemester=mysqli_fetch_assoc($resultSemester))
-                            {
-                            if($rowSemester["id_semester"] == $_POST["semester"])
-                            {
-                                $selected = "selected";
-                            }
-                            else
-                            {
-                                $selected = "";
-                            }
-                            ?>
-                        <option <?php echo $selected; ?> value="<?php echo $rowSemester["id_semester"];?>">
-                            Semester <?php echo $rowSemester["semester"];?>
-                        </option>
+                        <?php
+                        $resultSemester = semester($con);
+                        if (mysqli_num_rows($resultSemester)) {
+                            while ($rowSemester = mysqli_fetch_assoc($resultSemester)) {
+                                if ($rowSemester["id_semester"] == $_POST["semester"]) {
+                                    $selected = "selected";
+                                } else {
+                                    $selected = "";
+                                }
+                        ?>
+                                <option <?php echo $selected; ?> value="<?php echo $rowSemester["id_semester"]; ?>">
+                                    Semester <?php echo $rowSemester["semester"]; ?>
+                                </option>
                         <?php
                             }
                         }
-                    ?>
+                        ?>
                     </select>
                     <button type="submit" name="cariKrs" class="tmbl-filter btn btn-success ml-2">Filter</button>
                     <?php
-                    if(isset($_POST["cariKrs"]))
-                    { 
-                        if(($resultVerifikasi["status_daftar_ulang"] == "Sudah") && ($resultVerifikasi["status_verifikasi"] == "Belum"))
-                        {
-                        ?>
-                    <button type="button" class="btn btn-success float-right">Kirim ke DPA &nbsp&nbsp<i
-                            class="fas fa-arrow-circle-up"></i></button>
+                    if (isset($_POST["cariKrs"])) {
+                        if (($resultVerifikasi["status_daftar_ulang"] == "Sudah") && ($resultVerifikasi["status_verifikasi"] == "Belum")) {
+                    ?>
+                            <button type="button" class="btn btn-success float-right">Kirim ke DPA &nbsp&nbsp<i class="fas fa-arrow-circle-up"></i></button>
                     <?php }
                     } ?>
                 </form>
@@ -132,38 +119,33 @@ $statusDaftarUlang = '';
 
                 <br><br>
                 <?php
-                if(isset($_POST["cariKrs"]))
-                {
-                    $resultKrs = krsCariSemester($con,$idMahasiswaUser,$_POST["semester"]);
+                if (isset($_POST["cariKrs"])) {
+                    $resultKrs = krsCariSemester($con, $idMahasiswaUser, $_POST["semester"]);
                     $row = mysqli_fetch_assoc($resultKrs);
                     $statusVerifikasi = $row["status_verifikasi"];
                     $statusDaftarUlang = $row["status_daftar_ulang"];
                 }
                 ?>
 
-                <?php  
-                if($row["status_daftar_ulang"] == "Sudah")
-                {
-                ?>
-                <img src="../attachment/img/krs.png" width="100%" alt="">
                 <?php
-                }
-                else if($row["status_daftar_ulang"] == "Belum")
-                {
+                if ($row["status_daftar_ulang"] == "Sudah") {
                 ?>
-                <center>
-                    <div class="warna-card col-md-12 border border-danger mt-3">
-                        <div class="teks card-body" style="position: center">
-                            <!-- <p class="card-title">| <img src="../img/navigation/icon.svg"></a> Informasi|</p> -->
-                            <p class="card-title">| <i class="fas fa-info"></i> Informasi |</p>
-                            <p class="card-text" style="color:#950101">*Tidak dapat menampilkan data*</p>
-                            <p class="card-text">- Mahasiswa wajib membayar UKT sebelum masa KRS</p>
-                        </div>
-                </center>
+                    <img src="../attachment/img/krs.png" width="100%" alt="">
                 <?php
+                } else if ($row["status_daftar_ulang"] == "Belum") {
+                ?>
+                    <center>
+                        <div class="warna-card col-md-12 border border-danger mt-3">
+                            <div class="teks card-body" style="position: center">
+                                <!-- <p class="card-title">| <img src="../img/navigation/icon.svg"></a> Informasi|</p> -->
+                                <p class="card-title">| <i class="fas fa-info"></i> Informasi |</p>
+                                <p class="card-text" style="color:#950101">*Tidak dapat menampilkan data*</p>
+                                <p class="card-text">- Mahasiswa wajib membayar UKT sebelum masa KRS</p>
+                            </div>
+                    </center>
+                <?php
+                } else {
                 }
-                else
-                {}
                 ?>
             </div>
         </div>

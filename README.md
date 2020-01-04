@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://scontent.cdninstagram.com/vp/7772100e85b151d3df5ce2d9f15c2931/5D238A4B/t51.2885-19/50058445_759711274410450_2451852720248717312_n.jpg?_nc_ht=scontent-mia3-2.cdninstagram.com" width="300">
+<img src="img/logo-jti.png" width="300">
 </p>
 
 <h1 align="center"> JTI Website</h1>

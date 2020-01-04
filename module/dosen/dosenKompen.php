@@ -18,29 +18,28 @@ include "../process/proses_dosenKompen.php";
             <div class="media-body pb-3 mb-0 small lh-125">
               <div class="isi">
 
-              <?php 
-                  $resultTampilProfilDosen=tampilDataProfilDosen($con, $idUser);
-                if (mysqli_num_rows($resultTampilProfilDosen) > 0){
+                <?php
+                $resultTampilProfilDosen = tampilDataProfilDosen($con, $idUser);
+                if (mysqli_num_rows($resultTampilProfilDosen) > 0) {
                   while ($row = mysqli_fetch_assoc($resultTampilProfilDosen)) {
-              ?>
+                ?>
 
-                <div class="d-flex justify-content-center">
-                  <img src="../attachment/img/<?php echo ($row['foto'] == null)? 'avatar.jpeg' : $row['foto'] ; ?>" alt="dosen"
-                    style="width:150px;height:150px;border-radius:50%;">
-                </div>
-                <div class="data-dosen text-center">
-                  <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0"><?= $row["nama"]?></h6>
-                  <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0"><?= $row["nip"]?></h6>
-                  <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">DOSEN JTI</h6>
-                  <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">SARJANA</h6>
-                  <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">DOSEN TETAP</h6>
-                  <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">AKTIF</h6>
-                </div>
+                    <div class="d-flex justify-content-center">
+                      <img src="../attachment/img/<?php echo ($row['foto'] == null) ? 'avatar.jpeg' : $row['foto']; ?>" alt="dosen" style="width:150px;height:150px;border-radius:50%;">
+                    </div>
+                    <div class="data-dosen text-center">
+                      <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0"><?= $row["nama"] ?></h6>
+                      <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0"><?= $row["nip"] ?></h6>
+                      <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">DOSEN JTI</h6>
+                      <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">SARJANA</h6>
+                      <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">DOSEN TETAP</h6>
+                      <h6 class="detail-dosen border-bottom border-gray pb-2 mb-0">AKTIF</h6>
+                    </div>
               </div>
-              <?php
-                } 
-              }
-              ?> 
+          <?php
+                  }
+                }
+          ?>
             </div>
           </div>
         </div>
@@ -53,13 +52,13 @@ include "../process/proses_dosenKompen.php";
         <div class="media text-muted pt-3">
           <div class="media-body pb-3 mb-0 small lh-125">
             <div class="isi">
-            <?php
-              $queryKompen ="select a.nim, a.nama,  b.kode, c.kode_kelas, c.tingkat, d.id_mahasiswa, d.id_kompen, d.status_verifikasi from  tabel_mahasiswa a inner join tabel_prodi b on a.id_prodi = b.id_prodi inner join tabel_kelas c on a.id_kelas = c.id_kelas
+              <?php
+              $queryKompen = "select a.nim, a.nama,  b.kode, c.kode_kelas, c.tingkat, d.id_mahasiswa, d.id_kompen, d.status_verifikasi from  tabel_mahasiswa a inner join tabel_prodi b on a.id_prodi = b.id_prodi inner join tabel_kelas c on a.id_kelas = c.id_kelas
               inner join tabel_kompen d on a.id_mahasiswa = d.id_mahasiswa where d.id_dosen =(select id_dosen from tabel_dosen where id_user='$_SESSION[id]')";
               $result = mysqli_query($con, $queryKompen);
-              
-              if(mysqli_num_rows($result)>0){
-                ?>
+
+              if (mysqli_num_rows($result) > 0) {
+              ?>
                 <table class="table table-bordered text-center">
                   <thead>
                     <tr>
@@ -72,31 +71,31 @@ include "../process/proses_dosenKompen.php";
                   </thead>
                   <tbody>
                     <?php
-                      $index = 1;
-                      while($row = mysqli_fetch_assoc($result)){
-                        
-                        if($row["status_verifikasi"] == "sudah terverifikasi"){
-  
-                        
+                    $index = 1;
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                      if ($row["status_verifikasi"] == "sudah terverifikasi") {
+
+
                     ?>
-                      <tr class="Sudah-konfirmasi">
-                    <?php
-                        } else{
-                      
-                    ?>
-                       <tr class="Belum-konfirmasi">
-                    <?php
-                        } 
-                    ?>
+                        <tr class="Sudah-konfirmasi">
+                        <?php
+                      } else {
+
+                        ?>
+                        <tr class="Belum-konfirmasi">
+                        <?php
+                      }
+                        ?>
                         <td><?php echo $index; ?></td>
                         <td><?php echo $row["nim"]; ?></td>
                         <td><?php echo $row["nama"]; ?></td>
-                        <td><?=$row['kode'].' - '.$row['tingkat'].$row['kode_kelas']?></td>
-                        <td><button type="button" class="pratinjau btn detail-kompen" data-id="<?php echo $row["id_kompen"];?>" data-toggle="modal" data-target="#modalLihat">Lihat</button></td>
-                      </tr>
-                    <?php $index++;
-                      }
-                    ?>
+                        <td><?= $row['kode'] . ' - ' . $row['tingkat'] . $row['kode_kelas'] ?></td>
+                        <td><button type="button" class="pratinjau btn detail-kompen" data-id="<?php echo $row["id_kompen"]; ?>" data-toggle="modal" data-target="#modalLihat">Lihat</button></td>
+                        </tr>
+                      <?php $index++;
+                    }
+                      ?>
                   </tbody>
                 </table>
                 <div class="form-group row">
@@ -110,23 +109,23 @@ include "../process/proses_dosenKompen.php";
                       <div class="col-sm-5">
                         Sudah dikonfirmasi
                       </div>
-                    </div>  
+                    </div>
                     <div class="row">
                       <div class="col-sm-1">
                         <div class="box2">
                         </div><br>
                       </div>
                       <div class="col-sm-5">
-                      Belum dikonfirmasi
+                        Belum dikonfirmasi
                       </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
-                <?php
-              }else{
-                ?>
+              <?php
+              } else {
+              ?>
                 <div class="text-center text-muted mt-5 mb-2">Data Kompen Kosong</div>
-                <?php
+              <?php
               }
               ?>
             </div>
@@ -149,132 +148,128 @@ include "../process/proses_dosenKompen.php";
 
               <div class="col-12 p-0 data-kompen-ada scrollbar">
 
-            <?php 
-              $resultQueryTask= tampilTaskDosen($con, $idUser);
-              if (mysqli_num_rows($resultQueryTask) > 0) {
-                $index=1;
-                while ($row = mysqli_fetch_assoc($resultQueryTask)) {
-            ?>
+                <?php
+                $resultQueryTask = tampilTaskDosen($con, $idUser);
+                if (mysqli_num_rows($resultQueryTask) > 0) {
+                  $index = 1;
+                  while ($row = mysqli_fetch_assoc($resultQueryTask)) {
+                ?>
 
-                <form action="../process/proses_dosenKompen.php?module=kompenAbsen&act=sumbitTask" method="post">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="row" id="kolomTask">
-                        <div class="col-md-7">
-                          <div class="row">
-                            <div class="col-md-1 my-auto">
-                            <?= $index ?>.
-                            <input type="hidden" name="idDsnSubmitKmpn" id="idDsnSubmitKmpn" value="<?= $row['id_dosen']?>">
-                            <input type="hidden" name="idTask" id="idTask" value="<?= $row['id_pekerjaan_kompen']?>">
+                    <form action="../process/proses_dosenKompen.php?module=kompenAbsen&act=sumbitTask" method="post">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row" id="kolomTask">
+                            <div class="col-md-7">
+                              <div class="row">
+                                <div class="col-md-1 my-auto">
+                                  <?= $index ?>.
+                                  <input type="hidden" name="idDsnSubmitKmpn" id="idDsnSubmitKmpn" value="<?= $row['id_dosen'] ?>">
+                                  <input type="hidden" name="idTask" id="idTask" value="<?= $row['id_pekerjaan_kompen'] ?>">
+                                </div>
+                                <div class="col-md-9">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <?= $row["nama"] ?>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      kuota: <?= $row["kuota"] ?> mahasiswa
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      Semester: <?= $row["semester"] ?>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-md-9">
-                              <div class="row">
-                                <div class="col-md-12">
-                                  <?= $row["nama"]?>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  kuota: <?= $row["kuota"]?> mahasiswa
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="col-md-12">
-                                  Semester: <?= $row["semester"]?>
+                            <div class="col-md-3 my-auto">
+                              <button type="submit" class="btn btn-success kompen-submit-btn" id="submitKompenDosen" name="submitKompenDosen">Submit</button>
+                            </div>
+                            <div class="col-md-auto my-auto">
+                              <div class="dropdown">
+                                <a data-toggle="dropdown"><i class="fa fa-ellipsis-v fa-2x waves-effect"></i></a>
+                                <div class="dropdown-kompen dropdown-menu">
+                                  <a class="dropdown-item" data-toggle="modal" data-target="#hapusKompen<?= $row["id_pekerjaan_kompen"] ?>"><i class="far fa-trash-alt"></i> Hapus</a>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <div class="col-md-3 my-auto">
-                          <button type="submit" class="btn btn-success kompen-submit-btn" id="submitKompenDosen" name="submitKompenDosen">Submit</button>
-                        </div>
-                        <div class="col-md-auto my-auto">
-                          <div class="dropdown">
-                            <a data-toggle="dropdown"><i class="fa fa-ellipsis-v fa-2x waves-effect"></i></a>
-                            <div class="dropdown-kompen dropdown-menu">
-                              <a class="dropdown-item" data-toggle="modal" data-target="#hapusKompen<?= $row["id_pekerjaan_kompen"]?>"><i class="far fa-trash-alt"></i> Hapus</a>
-                            </div>
+                      </div>
+                      <div class="border-bottom border-gray pb-2 mb-0"> </div>
+                    </form>
+                  <?php
+                    $index++;
+                  }
+                } else {
+                  ?>
+                  <!-- ------------------ -->
+                  <!-- Jika Kompen Kosong -->
+                  <!-- ------------------ -->
+
+                  <div class="isi py-5 text-center">
+                    <div class="text-center mb-2">
+                      <img src="../img/clipboard.svg" alt="clipBoard" class="clipBoard">
+                    </div>
+                    <div class="data-kompen text-center w-50 mr-auto ml-auto">
+                      <h6>Anda tidak mempunyai daftar pekerjaan</h6>
+                    </div>
+                  </div>
+
+                  <!-- ---------------------- -->
+                  <!-- END Jika Kompen Kosong -->
+                  <!-- ---------------------- -->
+                <?php
+                }
+                ?>
+
+              </div>
+              <!-- Modal -->
+              <?php
+              $resultQueryTask = tampilTaskDosen($con, $idUser);
+              if (mysqli_num_rows($resultQueryTask) > 0) {
+                while ($row = mysqli_fetch_assoc($resultQueryTask)) {
+              ?>
+                  <div class="modal fade hapusKompen-modal" id="hapusKompen<?= $row["id_pekerjaan_kompen"] ?>" tabindex="-1" role="dialog" aria-labelledby="hapusKompen<?= $row["id_pekerjaan_kompen"] ?>Title" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                      <div class="modal-content konten-modal">
+                        <div class="modal-body ">
+                          <h5 class="isiHapusKompen text-center">Apakah Anda Yakin?</h5>
+                          <div class="tombolAksiHapusKompen text-center">
+                            <form action="../process/proses_dosenkompen.php?module=kompenAbsen&act=hapus" method="post">
+                              <button type="button" class="btn btn-tidak" data-dismiss="modal">Tidak</button>
+                              <input type="hidden" name="idTask" value="<?= $row["id_pekerjaan_kompen"] ?>">
+                              <input type="submit" class="btn btn-iya" name="hapusTask" value="Ya">
+                            </form>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="border-bottom border-gray pb-2 mb-0"> </div>
-                </form>
-            <?php
-                $index++;
-                }
-              }else {
-                ?>
-              <!-- ------------------ -->
-              <!-- Jika Kompen Kosong -->
-              <!-- ------------------ -->
-
-              <div class="isi py-5 text-center">
-                <div class="text-center mb-2">
-                  <img src="../img/clipboard.svg" alt="clipBoard" class="clipBoard">
-                </div>
-                <div class="data-kompen text-center w-50 mr-auto ml-auto">
-                  <h6>Anda tidak mempunyai daftar pekerjaan</h6>
-                </div>
-              </div>
-
-              <!-- ---------------------- -->
-              <!-- END Jika Kompen Kosong -->
-              <!-- ---------------------- -->
-                <?php
-              }
-            ?>    
-
-              </div>
-              <!-- Modal -->
               <?php
-              $resultQueryTask= tampilTaskDosen($con, $idUser);
-            if (mysqli_num_rows($resultQueryTask) > 0) {
-              while ($row = mysqli_fetch_assoc($resultQueryTask)) {
-              ?>
-              <div class="modal fade hapusKompen-modal" id="hapusKompen<?= $row["id_pekerjaan_kompen"]?>" tabindex="-1" role="dialog" 
-              aria-labelledby="hapusKompen<?= $row["id_pekerjaan_kompen"]?>Title" aria-hidden="true" data-backdrop="false">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content konten-modal">
-                    <div class="modal-body ">
-                      <h5 class="isiHapusKompen text-center">Apakah Anda Yakin?</h5>
-                      <div class="tombolAksiHapusKompen text-center">
-                      <form action="../process/proses_dosenkompen.php?module=kompenAbsen&act=hapus" method="post">
-                        <button type="button" class="btn btn-tidak" data-dismiss="modal">Tidak</button>
-                        <input type="hidden" name="idTask" value="<?= $row["id_pekerjaan_kompen"]?>">
-                        <input type="submit" class="btn btn-iya" name="hapusTask" value="Ya">
-                      </form>
-                      </div>
-                    </div>                 
-                  </div>
-                </div>
-              </div>
-            <?php
+                }
               }
-            }
-            ?>  
+              ?>
               <!-- ---------------- -->
               <!-- END Kompen Tabel -->
               <!-- ---------------- -->
 
               <!-- Tombol  -->
               <div class="d-flex justify-content-center">
-                <button type="button" class="btn tambah-pekerjaan-kompen" data-toggle="modal"
-                  data-target="#exampleModalCenter">Tambah Pekerjaan</button>
+                <button type="button" class="btn tambah-pekerjaan-kompen" data-toggle="modal" data-target="#exampleModalCenter">Tambah Pekerjaan</button>
               </div>
               <!-- Modal -->
-              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                   <div class="modal-content">
                     <button type="button" class="close text-right active" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                     <center>
-                      <h5 class=" modal-title text-center border-bottom border-gray pb-2 mb-0"
-                        id="exampleModalCenterTitle" style="margin: 0 auto;">Tambah Pekerjaan</h5>
+                      <h5 class=" modal-title text-center border-bottom border-gray pb-2 mb-0" id="exampleModalCenterTitle" style="margin: 0 auto;">Tambah Pekerjaan</h5>
                     </center>
                     <form action="../process/proses_dosenKompen.php?module=kompenAbsen&act=tambah" method="post">
                       <div class="modal-body">
@@ -286,7 +281,7 @@ include "../process/proses_dosenKompen.php";
                             </label>
                           </div>
                           <div class="col-6">
-                            <input type="hidden" name="idDosen" value="<?= $idUser?>">
+                            <input type="hidden" name="idDosen" value="<?= $idUser ?>">
                             <input id="pekerjaanKompensasi" class="form-control" type="text" name="taskPekerjaan">
                           </div>
                         </div>
@@ -331,7 +326,7 @@ include "../process/proses_dosenKompen.php";
                               <option value="30">30</option>
                             </select>
                           </div>
-                          
+
                         </div>
 
                         <div class="form-group row">
@@ -361,7 +356,7 @@ include "../process/proses_dosenKompen.php";
                 </div>
               </div>
 
-              
+
             </div>
           </div>
         </div>
@@ -369,21 +364,21 @@ include "../process/proses_dosenKompen.php";
     </div>
   </div>
 
-    <!-- Modal lihat-->
-    <div class="modal fade" id="modalLihat" tabindex="-1" role="dialog" aria-labelledby="modalLihatTitle" aria-hidden="true" data-backdrop="false">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">                        
-            <button type="button" class="close text-right active" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>                     
-            <center>
-              <h5 class=" modal-title text-center border-bottom border-gray pb-2 mb-0" id="modalLihatTitle" style="margin: 0 auto;">Form Konfirmasi Kompensasi</h5>
-            </center>
-            <div id="kompen-dosen">
-            
-            </div>
+  <!-- Modal lihat-->
+  <div class="modal fade" id="modalLihat" tabindex="-1" role="dialog" aria-labelledby="modalLihatTitle" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <button type="button" class="close text-right active" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <center>
+          <h5 class=" modal-title text-center border-bottom border-gray pb-2 mb-0" id="modalLihatTitle" style="margin: 0 auto;">Form Konfirmasi Kompensasi</h5>
+        </center>
+        <div id="kompen-dosen">
+
         </div>
       </div>
     </div>
+  </div>
   </div>
 </main>

@@ -5,6 +5,7 @@
   height: 1.8em;
   padding: 0;
 }
+
 #ruang .btn-hari:not(.active):hover {
   border: 1px solid rgb(122, 188, 247);
   background: rgb(122, 188, 247);
@@ -30,6 +31,7 @@
 #ruang .ruang {
   background-color: #f2f0f0;
 }
+
 #ruang .btn-pesan {
   width: 5.5em;
 }

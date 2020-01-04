@@ -44,4 +44,3 @@ function semester($con)
     $resultSemester = mysqli_query($con,$semester);
     return $resultSemester;
 }
-?>

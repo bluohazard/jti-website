@@ -1,4 +1,4 @@
-$("#txtCariPekerjaan").keyup(function() {
+$("#txtCariPekerjaan").keyup(function () {
   var input,
     filter,
     itemPekerjan,
@@ -64,7 +64,7 @@ $("#txtCariPekerjaan").keyup(function() {
   }
 });
 
-$("#txtCariKompen").keyup(function() {
+$("#txtCariKompen").keyup(function () {
   var input,
     filter,
     itemKompen,
@@ -129,7 +129,7 @@ $("#txtCariKompen").keyup(function() {
   }
 });
 
-$("#txtCariRekap").keyup(function() {
+$("#txtCariRekap").keyup(function () {
   var input,
     filter,
     itemRekap,
@@ -292,21 +292,23 @@ function validasiSubmitEditKompen() {
   return true;
 }
 
-$(".tampil-detail").click(function() {
+$(".tampil-detail").click(function () {
   var id_kompen = $(this).attr("data-id");
 
   $.ajax({
     url: "../process/proses_absenKompen.php",
     method: "post",
-    data: { tampilDetail: id_kompen },
-    success: function(data) {
+    data: {
+      tampilDetail: id_kompen
+    },
+    success: function (data) {
       $("#detail-kompen").html(data);
       $("#modalPreview").modal("show");
     }
   });
 });
 
-$(".submit-absen").click(function() {
+$(".submit-absen").click(function () {
   var id_absen = $(this).attr("id");
 
   $.ajax({
@@ -318,34 +320,36 @@ $(".submit-absen").click(function() {
       ijin: $("input[id='ijin" + id_absen + "']").val(),
       alpa: $("input[id='alpa" + id_absen + "']").val()
     },
-    success: function(data) {
+    success: function (data) {
       alert("Absensi berhasil disimpan");
       location.reload();
     }
   });
 });
 
-$(".edit-kompen").click(function() {
+$(".edit-kompen").click(function () {
   var id_kompen = $(this).attr("id");
 
   $.ajax({
     url: "../process/proses_absenKompen.php",
     method: "post",
-    data: { edit_kompen: id_kompen },
-    success: function(data) {
+    data: {
+      edit_kompen: id_kompen
+    },
+    success: function (data) {
       $("#id_kompenEdit").val(id_kompen);
       $("#edit-kompen").html(data);
     }
   });
 });
 
-$(".hapus-kompen").click(function() {
+$(".hapus-kompen").click(function () {
   var id_kompen = $(this).attr("id");
   $("#id_kompenHapus").val(id_kompen);
   $("#modalHapusKompen").modal("show");
 });
 
-$("#modalEditKompen").on("change", 'select[name="dosen"]', function() {
+$("#modalEditKompen").on("change", 'select[name="dosen"]', function () {
   var id_dosen = $(this).val();
 
   $.ajax({
@@ -355,14 +359,14 @@ $("#modalEditKompen").on("change", 'select[name="dosen"]', function() {
       pilihDosen: id_dosen,
       id_semester: $("#id_semesterPekerjaan").val()
     },
-    success: function(data) {
+    success: function (data) {
       $('select[name="jenisKompensasi"]').prop("disabled", false);
       $('select[name="jenisKompensasi"]').html(data);
     }
   });
 });
 
-$("#cariAbsensi").click(function() {
+$("#cariAbsensi").click(function () {
   var kelas = $("#kelasAbsensi option:selected").val();
 
   $.ajax({
@@ -371,13 +375,13 @@ $("#cariAbsensi").click(function() {
     data: {
       cariAbsensi: kelas
     },
-    success: function(data) {
+    success: function (data) {
       $("#absen").html(data);
     }
   });
 });
 
-$("#cariTotalAbsensi").click(function() {
+$("#cariTotalAbsensi").click(function () {
   var kelas = $("#kelasTotalAbsensi option:selected").val();
 
   $.ajax({
@@ -386,7 +390,7 @@ $("#cariTotalAbsensi").click(function() {
     data: {
       cariTotalAbsensi: kelas
     },
-    success: function(data) {
+    success: function (data) {
       $("#totalAbsen").html(data);
     }
   });

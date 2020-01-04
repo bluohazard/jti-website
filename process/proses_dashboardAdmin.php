@@ -18,4 +18,3 @@ function mahasiswaSp($con) {
   $resultMahasiswaSp = mysqli_query($con, $mahasiswaSp);
   return $resultMahasiswaSp;
 }
-?>

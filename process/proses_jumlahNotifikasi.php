@@ -6,5 +6,3 @@ function getJumlahNotifikasiBelumDibaca($con, $idUser) {
   $row = mysqli_fetch_assoc($resultJumlah);
   return $row['jumlah'];
 }
-
-?>

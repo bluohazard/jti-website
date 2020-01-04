@@ -1,4 +1,4 @@
-$("#cariKelas").click(function() {
+$("#cariKelas").click(function () {
   var kelas = $("#kelasCari option:selected").val();
 
   $.ajax({
@@ -7,7 +7,7 @@ $("#cariKelas").click(function() {
     data: {
       cariKelas: kelas
     },
-    success: function(data) {
+    success: function (data) {
       $("#tabelKelas").html(data);
     }
   });

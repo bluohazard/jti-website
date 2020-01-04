@@ -28,7 +28,7 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
     <div class="col-md-6 p-0 pb-3">
       <?php
       if (cekStatusAktif($con) == true) {
-        ?>
+      ?>
         <div class="m-2 p-3 mb-3 bg-white rounded shadow-sm px-4">
           <h5 class="border-bottom border-gray pb-2 mb-3"><strong>Kuisioner</strong></h5>
           <div class="isi-mhs small lh-125 mb-2">
@@ -63,14 +63,14 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                           $resultDosenKuisioner = dosenKuisioner($con);
                           if (mysqli_num_rows($resultDosenKuisioner) > 0) {
                             while ($rowDosenKuisioner = mysqli_fetch_assoc($resultDosenKuisioner)) {
-                              ?>
+                          ?>
                               <option value="<?php echo $rowDosenKuisioner["id_matkul"]; ?>">
                                 <?php echo $rowDosenKuisioner["dosen"] . " (" . $rowDosenKuisioner["matkul"] . ")"; ?>
                               </option>
-                            <?php
+                          <?php
+                            }
                           }
-                        }
-                        ?>
+                          ?>
                         </select>
                         <input type="hidden" name="idDosen" value="">
                         <input type="hidden" name="idMatkul" value="">
@@ -98,7 +98,7 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                         if (mysqli_num_rows($resultIsiKuis) > 0) {
                           $i = 1;
                           while ($rowIsiKuis = mysqli_fetch_assoc($resultIsiKuis)) {
-                            ?>
+                        ?>
                             <div class="row pil1">
                               <div class="col-sm-7">
                                 <input type="hidden" name="id_kuisioner<?= $i ?>" value="<?= $rowIsiKuis["id_kuisioner"] ?>">
@@ -115,7 +115,7 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                               </div>
                             </div>
 
-                            <?php
+                        <?php
                             $i++;
                           }
                         }
@@ -141,8 +141,8 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
           </script>
         </div>
       <?php
-    }
-    ?>
+      }
+      ?>
 
       <div id="infoDanPengumuman">
         <?php
@@ -150,7 +150,7 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
         if (mysqli_num_rows($resultInfo) > 0) {
           while ($row = mysqli_fetch_assoc($resultInfo)) {
             $id_info = $row["id_info"];
-            ?>
+        ?>
             <div class="m-2 p-3 mb-3 bg-white rounded shadow-sm px-4">
               <div class="border-bottom border-gray">
                 <div class="row">
@@ -174,13 +174,13 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                   $resultAttachment = attachment($con, $row["id_info"]);
                   $resultAttachment2 = attachment($con, $row["id_info"]);
                   if (mysqli_num_rows($resultAttachment) > 0) {
-                    ?>
+                  ?>
                     <div class="photos">
                       <div class="row">
                         <?php
                         while ($row = mysqli_fetch_assoc($resultAttachment)) {
                           if ($row["tipe"] == "gambar") {
-                            ?>
+                        ?>
                             <div class="col-md-6 p-2">
                               <div class="image">
                                 <a href="../attachment/img/<?php echo $row['file']; ?>" data-toggle="lightbox" data-gallery="mixedgallery<?php echo $row['id_info']; ?>">
@@ -189,10 +189,10 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                               </div>
                             </div>
 
-                          <?php
+                        <?php
+                          }
                         }
-                      }
-                      ?>
+                        ?>
                       </div>
                     </div>
 
@@ -200,7 +200,7 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                       <?php
                       while ($row = mysqli_fetch_assoc($resultAttachment2)) {
                         if ($row["tipe"] == "file") {
-                          ?>
+                      ?>
                           <div class="row isi-download">
                             <div class="col-md-12">
                               <button class="btn btn-outline-dark download d-flex">
@@ -215,26 +215,26 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                               </button>
                             </div>
                           </div>
-                        <?php
+                      <?php
+                        }
                       }
-                    }
-                    ?>
+                      ?>
                     </div>
                   <?php
-                }
-                ?>
+                  }
+                  ?>
 
                 </div>
               </div>
               <?php
               $resultKomentar = komentar($con, $id_info);
               if (mysqli_num_rows($resultKomentar) > 0) {
-                ?>
+              ?>
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                   <div class="isi-mhs">
                     <?php
                     while ($row = mysqli_fetch_assoc($resultKomentar)) {
-                      ?>
+                    ?>
                       <div class="komentar-item">
 
                         <div class="col-md-12">
@@ -255,15 +255,15 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                                 $resultReplyKomentar = replyKomentar($con, $row["id_komentar"]);
                                 if (mysqli_num_rows($resultKomentar) > 0) {
                                   while ($rowKomentar = mysqli_fetch_assoc($resultReplyKomentar)) {
-                                    ?>
+                                ?>
                                     <div class="col pr-0 mb-1">
                                       <strong><?php echo tampilUser($con, $rowKomentar["id_user"]) ?></strong>&nbsp;&nbsp;&nbsp;
                                       <span class="komen text-secondary"><?php echo $rowKomentar["isi"] ?></span>
                                     </div>
-                                  <?php
+                                <?php
+                                  }
                                 }
-                              }
-                              ?>
+                                ?>
                                 <div class='col mr-0'>
                                   <input data-idinfo="<?php echo $id_info ?>" data-iduser="<?php echo $idUser ?>" data-idkomentar="<?php echo $row["id_komentar"] ?>" class='reply-komen-input form-control form-control-sm d-none' placeholder='Tulis balasan' type='text'>
                                 </div>
@@ -276,13 +276,13 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                       </div>
 
                     <?php
-                  }
-                  ?>
+                    }
+                    ?>
                   </div>
                 </div>
               <?php
-            }
-            ?>
+              }
+              ?>
 
               <div class="form-group">
                 <textarea class="form-control border-0 input-komentar" data-idinfo="<?php echo $id_info ?>" data-iduser="<?php echo $idUser ?>" rows="auto" placeholder="Tulis Komentar..."></textarea>
@@ -290,10 +290,10 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
               </div>
 
             </div>
-          <?php
+        <?php
+          }
         }
-      }
-      ?>
+        ?>
       </div>
     </div>
 
@@ -306,7 +306,7 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
           if (mysqli_num_rows($resultInfoBeasiswa) > 0) {
             while ($row = mysqli_fetch_assoc($resultInfoBeasiswa)) {
               $id_infoBeasiswa = $row["id_beasiswa"];
-              ?>
+          ?>
               <div class="beasiswa pb-2 pt-3 mb-0 border-top border-dark">
                 <h6><strong><?php echo $row["judul"]; ?></strong></h6>
                 <p class="isi-beasiswa">
@@ -317,9 +317,9 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
                 </small>
               </div>
             <?php
-          }
-        } else {
-          ?>
+            }
+          } else {
+            ?>
             <div class="beasiswa pb-3 mb-0 ">
               <div class="scholarship text-center mt-5 mb-5">
                 <img src="../img/scholarship.svg" alt="Scholarship" class="">
@@ -328,8 +328,8 @@ $resultIsiKuis = mysqli_query($con, $queryIsiKuis);
               </div>
             </div>
           <?php
-        }
-        ?>
+          }
+          ?>
         </div>
 
       </div>

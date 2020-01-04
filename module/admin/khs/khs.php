@@ -1,6 +1,6 @@
 <?php
-  include "../config/connection.php";
-  include "../process/proses_khs.php";
+include "../config/connection.php";
+include "../process/proses_khs.php";
 ?>
 
 <body>
@@ -37,18 +37,18 @@
                                 <select class="form-control form-control-sm w-auto mr-1" name="kelas">
                                     <option value="0" class="text">Pilih Kelas</option>
                                     <?php
-                                    $resultKelas=kelas($con);
-                                    if(mysqli_num_rows($resultKelas)){
-                                        while($rowKelas=mysqli_fetch_assoc($resultKelas)){
-                                            ?>
-                                            <option value="<?php echo $rowKelas["id_kelas"];?>">
-                                            <?php echo tampilKelas($con,$rowKelas["id_kelas"]);?></option>
-                                            <?php
+                                    $resultKelas = kelas($con);
+                                    if (mysqli_num_rows($resultKelas)) {
+                                        while ($rowKelas = mysqli_fetch_assoc($resultKelas)) {
+                                    ?>
+                                            <option value="<?php echo $rowKelas["id_kelas"]; ?>">
+                                                <?php echo tampilKelas($con, $rowKelas["id_kelas"]); ?></option>
+                                        <?php
                                         }
-                                    }else{
+                                    } else {
                                         ?>
                                         <option value="0">Kelas Kosong</option>
-                                        <?php
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -62,86 +62,83 @@
                             <!-- isi tabel -->
                             <div class="media-body pb-8 mb-0">
                                 <?php
-                                    if(isset($_POST["cariKhsKelas"])){
-                                        $result=khsKelas($con, $_POST["kelas"]);
-                                    }
-                                    else{
-                                        $result=khsKelas($con, minKelas($con));
-                                    }
-                                    
-                                    if (mysqli_num_rows($result) > 0){
-                                    ?>
+                                if (isset($_POST["cariKhsKelas"])) {
+                                    $result = khsKelas($con, $_POST["kelas"]);
+                                } else {
+                                    $result = khsKelas($con, minKelas($con));
+                                }
+
+                                if (mysqli_num_rows($result) > 0) {
+                                ?>
                                     <table class="table table-striped table-bordered text-center">
                                         <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Semester</th>
-                                            <th>SKS</th>
-                                            <th>IP</th>
-                                            <th>Proses</th>
-                                        </tr>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>NIM</th>
+                                                <th>Nama</th>
+                                                <th>Semester</th>
+                                                <th>SKS</th>
+                                                <th>IP</th>
+                                                <th>Proses</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                            if(mysqli_num_rows($result) > 0){
-                                                $no=1;
-                                                while($row = mysqli_fetch_assoc($result)){
-                                                    if(khsNilai($con, $row["id_mahasiswa"], $row["id_semester"])!=0){
-                                                    ?>
-                                                    <tr>
-                                                        <td><?php echo $no;?></td>
-                                                        <td><?php echo $row["nim"];?></td>
-                                                        <td><?php echo $row["nm_mahasiswa"];?></td>
-                                                        <td><?php echo $row["semester"];?></td>
-                                                        <td><?php echo $row["sks"];?></td>
-                                                        <td><?php echo khsNilai($con, $row["id_mahasiswa"], $row["id_semester"]) ?></td>
-                                                        <td><button class="edit tmbl-table btn btn-success edit-nilai" type="button" class="pratinjau btn" data-toggle="modal"
-                                                            data-target="#myModal" class="edit" data-mhs="<?php echo $row["id_mahasiswa"];?>" data-semester="<?php echo $row["id_semester"];?>">Edit</button>
-                                                        </td>
-                                                    </tr>
+                                            <?php
+                                            if (mysqli_num_rows($result) > 0) {
+                                                $no = 1;
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    if (khsNilai($con, $row["id_mahasiswa"], $row["id_semester"]) != 0) {
+                                            ?>
+                                                        <tr>
+                                                            <td><?php echo $no; ?></td>
+                                                            <td><?php echo $row["nim"]; ?></td>
+                                                            <td><?php echo $row["nm_mahasiswa"]; ?></td>
+                                                            <td><?php echo $row["semester"]; ?></td>
+                                                            <td><?php echo $row["sks"]; ?></td>
+                                                            <td><?php echo khsNilai($con, $row["id_mahasiswa"], $row["id_semester"]) ?></td>
+                                                            <td><button class="edit tmbl-table btn btn-success edit-nilai" type="button" class="pratinjau btn" data-toggle="modal" data-target="#myModal" class="edit" data-mhs="<?php echo $row["id_mahasiswa"]; ?>" data-semester="<?php echo $row["id_semester"]; ?>">Edit</button>
+                                                            </td>
+                                                        </tr>
                                                     <?php
-                                                    } else if(khsNilai($con, $row["id_mahasiswa"], $row["id_semester"])==0){
+                                                    } else if (khsNilai($con, $row["id_mahasiswa"], $row["id_semester"]) == 0) {
                                                     ?>
-                                                    <tr>
-                                                        <td><?php echo $no;?></td>
-                                                        <td><?php echo $row["nim"];?></td>
-                                                        <td><?php echo $row["nm_mahasiswa"];?></td>
-                                                        <td><?php echo $row["semester"];?></td>
-                                                        <td><?php echo $row["sks"];?></td>
-                                                        <td><?php echo khsNilai($con, $row["id_mahasiswa"], $row["id_semester"]) ?></td>
-                                                        <td><button class="lihat tmbl-table btn btn-info update-nilai" type="button" class="pratinjau btn" data-toggle="modal"
-                                                            data-target="#updateModal" class="edit" data-mhs="<?php echo $row["id_mahasiswa"];?>" data-semester="<?php echo $row["id_semester"];?>">Upload</button>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
+                                                        <tr>
+                                                            <td><?php echo $no; ?></td>
+                                                            <td><?php echo $row["nim"]; ?></td>
+                                                            <td><?php echo $row["nm_mahasiswa"]; ?></td>
+                                                            <td><?php echo $row["semester"]; ?></td>
+                                                            <td><?php echo $row["sks"]; ?></td>
+                                                            <td><?php echo khsNilai($con, $row["id_mahasiswa"], $row["id_semester"]) ?></td>
+                                                            <td><button class="lihat tmbl-table btn btn-info update-nilai" type="button" class="pratinjau btn" data-toggle="modal" data-target="#updateModal" class="edit" data-mhs="<?php echo $row["id_mahasiswa"]; ?>" data-semester="<?php echo $row["id_semester"]; ?>">Upload</button>
+                                                            </td>
+                                                        </tr>
+                                                <?php
                                                     }
-                                                $no++;
+                                                    $no++;
                                                 }
                                                 ?>
                                         </tbody>
-                                        <?php
-                                        } else{
-                                        ?>
+                                    <?php
+                                            } else {
+                                    ?>
                                         <div class="text-center">
                                             <img src="../img/magnifier.svg" alt="pencarian" class="p-3">
                                             <p class="text-muted">Mahasiswa Tidak Ditemukan</p>
                                         </div>
-                                        <?php
-                                        }
-                                        ?>
-                                    </table>
                                     <?php
-                                    } else{
+                                            }
                                     ?>
+                                    </table>
+                                <?php
+                                } else {
+                                ?>
                                     <div class="text-center">
                                         <img src="../img/magnifier.svg" alt="pencarian" class="p-3">
                                         <p class="text-muted">Data Mahasiswa Per-Kelas Tidak Ditemukan</p>
                                     </div>
-                                    <?php
-                                    }
-                                    ?>
+                                <?php
+                                }
+                                ?>
                             </div>
                             <!-- isi tabel end -->
                         </div>
@@ -156,31 +153,32 @@
                         <!-- Modal Header -->
                         <div class="modal-header text-center">
                             <h4 class="modal-title w-100">Kartu Hasil Studi</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="container-fluid p-0" id="input-Mhs">
-                        <!-- Modal Header End-->
-                        <!-- Modal body -->
+                            <!-- Modal Header End-->
+                            <!-- Modal body -->
+                        </div>
                     </div>
                 </div>
+                <!-- Modal Lihat END-->
             </div>
-            <!-- Modal Lihat END-->
-        </div>
-        <!-- Modal Lihat-->
-        <div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" data-backdrop="true">
+            <!-- Modal Lihat-->
+            <div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true" data-backdrop="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content pl-3 pr-3 text-left">
                         <!-- Modal Header -->
                         <div class="modal-header text-center">
                             <h4 class="modal-title w-100">Kartu Hasil Studi</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="container-fluid p-0" id="update-Mhs">
-                        <!-- Modal Header End-->
-                        <!-- Modal body -->
+                            <!-- Modal Header End-->
+                            <!-- Modal body -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Modal Lihat END-->
+                <!-- Modal Lihat END-->
     </main>
-<body>
+
+    <body>

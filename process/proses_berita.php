@@ -34,7 +34,7 @@ function tampilFile($con, $id_info)
     $tampilFile = "SELECT a.*, b.* FROM tabel_info a, tabel_attachment b
     WHERE a.id_info = b.id_info
     AND b.id_info = $id_info";
-    $resultTampilFile = mysqli_query($con, $resultTampilFile);
+    $resultTampilFile = mysqli_query($con, $tampilFile);
     return $resultTampilFile;
 }
 
@@ -58,11 +58,9 @@ function jumlahKomentar($con, $id_info)
 }
 
 //PROSES
-if(isset($_POST["insert"]))
-{
+if (isset($_POST["insert"])) {
 
-    if($_GET["module"]=="beritaPengumuman" && $_GET["act"]=="tambah")
-    {
+    if ($_GET["module"] == "beritaPengumuman" && $_GET["act"] == "tambah") {
         $count_files_img = count($_FILES['gambar']['name']);
         $count_files_doc = count($_FILES['file']['name']);
 
@@ -81,7 +79,7 @@ if(isset($_POST["insert"]))
 
         $format_img = array("jpg", "jpeg", "png");
         $format_doc = array("doc", "docx", "pdf", "xls", "ppt", "zip");
-        
+
         // $tmp = $_FILES["gambar"]["tmp_name"];
         // $nama_file = $_FILES["gambar"]["name"];
         // move_uploaded_file($tmp, "../attachment/$nama_folder/$nama_file");
@@ -92,85 +90,73 @@ if(isset($_POST["insert"]))
         $max_files_size = 5 * 1024 * 1024;
         $gambar = "Gambar";
         $file = "File";
-        $queryBerita= "INSERT INTO tabel_info (judul, isi, tipe, waktu_publish, waktu_perubahan)  
-                      VALUES ('$_POST[judulBerita]','$_POST[isiBerita]','$_POST[tipeBerita]','$datePublish','$dateChange')";
-        if(mysqli_query($con, $queryBerita))
-        {
+        $queryBerita = "INSERT INTO tabel_info (judul, isi, tipe, waktu_publish, waktu_perubahan)  
+                        VALUES ('$_POST[judulBerita]','$_POST[isiBerita]','$_POST[tipeBerita]','$datePublish','$dateChange')";
+        if (mysqli_query($con, $queryBerita)) {
             $id_info1 = "SELECT MAX(id_info) FROM tabel_info";
-            if(mysqli_query($con, $id_info1))
-            {
+            if (mysqli_query($con, $id_info1)) {
                 $resultid = mysqli_query($con, $id_info1);
-                if(mysqli_num_rows($resultid) == 1)
-                {
-                   while ($row2 = mysqli_fetch_assoc($resultid)) {
-                       
-                       $realID = $row2['MAX(id_info)'];
+                if (mysqli_num_rows($resultid) == 1) {
+                    while ($row2 = mysqli_fetch_assoc($resultid)) {
 
-                       for ($i=0; $i < $count_files_img; $i++) { 
+                        $realID = $row2['MAX(id_info)'];
+
+                        for ($i = 0; $i < $count_files_img; $i++) {
                             $error = $_FILES["gambar"]["error"][$i];
                             $tmp = $_FILES["gambar"]["tmp_name"][$i];
                             $nama_file = $_FILES["gambar"]["name"][$i];
-                            
 
-                            
-                            if ($error == 0) 
-                            {
-                                if(!in_array($_FILES["gambar"]["size"],$max_files_size))
-                                {
-                                    $error.="Kapasitas Lebih Dari 5 MB<br>";
-                                    $filegagal=true;
+
+
+                            if ($error == 0) {
+                                if (!in_array($_FILES["gambar"]["size"], $max_files_size)) {
+                                    $error .= "Kapasitas Lebih Dari 5 MB<br>";
+                                    $filegagal = true;
                                     echo "<script>$error</script>";
                                 }
-                                if(!$filegagal AND move_uploaded_file($tmp, "../attachment/$nama_folder_img/$nama_file"))
-                                { 
-                                    $queryGambar="INSERT INTO tabel_attachment (tipe, `file`, id_info)
+                                if (!$filegagal and move_uploaded_file($tmp, "../attachment/$nama_folder_img/$nama_file")) {
+                                    $queryGambar = "INSERT INTO tabel_attachment (tipe, `file`, id_info)
                                     VALUES ('$gambar', '$nama_file', '$realID')";
-                                    
-                                    if(mysqli_query($con, $queryGambar))
-                                    {
+
+                                    if (mysqli_query($con, $queryGambar)) {
                                         header('location:../module/index.php?module=' . $_GET["module"]);
-                                    }else
-                                    {
-                                        $error=urlencode("Data tidak berhasil ditambahkan");
+                                    } else {
+                                        $error = urlencode("Data tidak berhasil ditambahkan");
                                         header('location:../module/index.php?module=' . $_GET["module"] . '?error=  $error');
                                     }
                                 }
                                 mysqli_query($con, $queryGambar);
                             }
-                       }
-                       for ($i=0; $i < $count_files_doc; $i++) { 
+                        }
+                        for ($i = 0; $i < $count_files_doc; $i++) {
                             $error = $_FILES["file"]["error"][$i];
                             $tmp = $_FILES["file"]["tmp_name"][$i];
                             $nama_file = $_FILES["file"]["name"][$i];
                             move_uploaded_file($tmp, "../attachment/$nama_folder_doc/$nama_file");
 
-                            $queryFile="INSERT INTO tabel_attachment (tipe, `file`, id_info)
+                            $queryFile = "INSERT INTO tabel_attachment (tipe, `file`, id_info)
                                 VALUES ('$file', '$nama_file', '$realID')";
                             if ($error == 0) {
                                 # code...
                                 mysqli_query($con, $queryFile);
                             }
-                       }
-                   }
+                        }
+                    }
                 }
                 header('location:../module/index.php?module=' . $_GET["module"]);
             }
-            
-        }            
+        }
     }
 }
 
 if (isset($_POST['hapus'])) {
-    $queryDelete1="DELETE FROM tabel_info WHERE id_info='$_POST[id_info]';";
-    $queryDelete2="DELETE FROM tabel_attachment WHERE id_info='$_POST[id_info]';";
+    $queryDelete1 = "DELETE FROM tabel_info WHERE id_info='$_POST[id_info]';";
+    $queryDelete2 = "DELETE FROM tabel_attachment WHERE id_info='$_POST[id_info]';";
 
-    if(mysqli_query($con, $queryDelete1) && mysqli_query($con, $queryDelete2))
-    {
+    if (mysqli_query($con, $queryDelete1) && mysqli_query($con, $queryDelete2)) {
         header('location:../module/index.php?module=' . $_GET["module"]);
-    }
-    else
-    {
-    echo("Error description: " . mysqli_error($con));
+    } else {
+        echo ("Error description: " . mysqli_error($con));
     }
 }
 
@@ -184,10 +170,11 @@ if (isset($_POST["tampilDetailInfo"])) {
     $detailBerita = "SELECT * FROM tabel_info WHERE id_info = $id_info GROUP BY id_info";
     $resultDetailBerita = mysqli_query($con, $detailBerita);
 
-    if (mysqli_num_rows($resultDetailBerita) == 0) { } else {
+    if (mysqli_num_rows($resultDetailBerita) == 0) {
+    } else {
         $no = 1;
         while ($row = mysqli_fetch_assoc($resultDetailBerita)) {
-            ?>
+?>
             <div class="modal-header">
                 <strong>
                     <h3 class="modal-title"><?php echo $row["judul"]; ?></h3>
@@ -210,7 +197,7 @@ if (isset($_POST["tampilDetailInfo"])) {
                 $index = 1;
                 while ($row1 = mysqli_fetch_assoc($resultTampilDataFile)) {
                     if ($row1["tipe"] == "file") {
-                        ?>
+            ?>
                         <button class="btn btn-outline-dark download d-flex">
                             <div class="col-sm-7">
                                 <h6>
@@ -220,26 +207,26 @@ if (isset($_POST["tampilDetailInfo"])) {
                                 </h6>
                             </div>
                             <div class="col-sm-5 text-right">
-                                  <img src="../img/vector.svg" alt="Download button" class="">
+                                <img src="../img/vector.svg" alt="Download button" class="">
                             </div>
                         </button>
                         <br>
                     <?php
-                } else if ($row1["tipe"] == "gambar") {
+                    } else if ($row1["tipe"] == "gambar") {
                     ?>
                         <div class="photos">
                             <div class="row">
                                 <div class="col-md-12 p-2">
                                     <div class="col-md-4">
-                                    <div class="image">
-                                        <img class="img img-fluid img-responsive full-width cursor" src="../attachment/img/<?php echo $row1['file']; ?>" alt="<?php echo $row1['file']; ?>" width="150px" ; height="150px" ;>
-                                    </div>
+                                        <div class="image">
+                                            <img class="img img-fluid img-responsive full-width cursor" src="../attachment/img/<?php echo $row1['file']; ?>" alt="<?php echo $row1['file']; ?>" width="150px" ; height="150px" ;>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     <?php
-                } else if ($row1["tipe"] == "gambar" and "file") {
+                    } else if ($row1["tipe"] == "gambar" and "file") {
                     ?>
                         <button class="btn btn-outline-dark download d-flex">
                             <div class="col-sm-7">
@@ -255,27 +242,27 @@ if (isset($_POST["tampilDetailInfo"])) {
                             <div class="row">
                                 <div class="col-md-12 p-2">
                                     <div class="col-md-6">
-                                    <div class="image">
-                                        <img class="img img-fluid img-responsive full-width cursor" src="../attachment/img/<?php echo $row1['file']; ?>" alt="<?php echo $row1['file']; ?>" width="150px" ; height="150px" ;>
-                                    </div>
+                                        <div class="image">
+                                            <img class="img img-fluid img-responsive full-width cursor" src="../attachment/img/<?php echo $row1['file']; ?>" alt="<?php echo $row1['file']; ?>" width="150px" ; height="150px" ;>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <?php
+                <?php
+                    }
+                    $index++;
                 }
-                $index++;
-            }
-            ?>
+                ?>
             <?php
-        } else {
+            } else {
             ?>
                 <p></p>
-            <?php
+<?php
+            }
         }
     }
-}
-$no++;
+    $no++;
 }
 // MODAL BERITA LIHAT END
 ?>
@@ -297,7 +284,7 @@ if (isset($_GET["adminCariBerita"])) {
     $resultTampilBerita = cariBerita($con, formatTanggal($_GET["tanggalBerita"]));
     $index = 1;
     if (mysqli_num_rows($resultTampilBerita) > 0) {
-        ?>
+?>
         <table class="table table-striped table-bordered mt-3">
             <thead class="text-center">
                 <tr class="p-2">
@@ -312,7 +299,7 @@ if (isset($_GET["adminCariBerita"])) {
             <tbody class="text-center m-auto">
                 <?php
                 while ($row = mysqli_fetch_assoc($resultTampilBerita)) {
-                    ?>
+                ?>
                     <tr>
                         <td><?= $index ?></td>
                         <td class="text-left detail-berita" data-toggle="modal" data-target="#modalPreview" data-info="<?php echo $row["id_info"]; ?>"><?php echo $row["judul"]; ?></td>
@@ -321,7 +308,7 @@ if (isset($_GET["adminCariBerita"])) {
                         <td><?php echo jumlahKomentar($con, $row["id_info"]); ?></td>
                         <td><button class=" tmbl-table btn btn-danger" type="button" class="pratinjau btn" data-toggle="modal" data-target="#hapus<?= $index ?>" class="hapus">Hapus</button></td>
                     </tr>
-                    <?php
+                <?php
                     $index++;
                 }
                 ?>
@@ -329,13 +316,13 @@ if (isset($_GET["adminCariBerita"])) {
             </tbody>
         </table>
     <?php
-} else {
+    } else {
     ?>
         <div class="text-center">
             <img src="../img/magnifier.svg" alt="pencarian" class="p-3">
             <p class="text-muted">Tidak ada berita pada "<?php echo date("d M Y", strtotime($_GET["tanggalBerita"])); ?>"</p>
         </div>
-    <?php
-}
+<?php
+    }
 }
 ?>

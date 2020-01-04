@@ -1,12 +1,14 @@
-#nilai .gambar-profil{
+#nilai .gambar-profil {
     border-radius: 50%;
 }
-#nilai .semester{
+
+#nilai .semester {
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
 }
-#nilai .tmbl-filter{
+
+#nilai .tmbl-filter {
     position: absolute;
     width: 69px;
     left: 260px;
@@ -20,17 +22,20 @@
 #nilai .warna-card {
     background-color: #FCA5A5;
 }
-#nilai .gambar-profil{
+
+#nilai .gambar-profil {
     border-radius: 50%;
 }
-#nilai .card-title{
+
+#nilai .card-title {
     font-family: Lato;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
     line-height: normal;
 }
-#nilai .card-text{
+
+#nilai .card-text {
     font-family: Lato;
     font-style: normal;
     font-weight: 600;
@@ -39,10 +44,10 @@
 }
 
 /* punya vian */
-#nilai .table-striped>tbody>tr:nth-child(odd)>td{
-	background-color:#CECEEF;
+#nilai .table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #CECEEF;
 }
 
-#nilai .table-striped>tbody>tr:nth-child(even)>td{
-	background-color:#ECECFF;
+#nilai .table-striped>tbody>tr:nth-child(even)>td {
+    background-color: #ECECFF;
 }

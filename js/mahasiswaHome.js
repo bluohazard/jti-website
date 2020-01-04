@@ -1,7 +1,9 @@
 // set tanggal ke hidden input
-$("#datepickerSearchBerita").datepicker({ format: "yyyy/mm/dd" });
+$("#datepickerSearchBerita").datepicker({
+  format: "yyyy/mm/dd"
+});
 
-$(document).on("click", ".hasilSearchBerita", function(e) {
+$(document).on("click", ".hasilSearchBerita", function (e) {
   e.preventDefault();
   var d = $(this).data("idinfo");
 
@@ -12,7 +14,7 @@ $(document).on("click", ".hasilSearchBerita", function(e) {
       hasilSearchBerita: 1,
       id_info: d
     },
-    success: function(response) {
+    success: function (response) {
       console.log(response);
 
       $("#infoDanPengumuman")
@@ -22,7 +24,7 @@ $(document).on("click", ".hasilSearchBerita", function(e) {
   });
 });
 
-$("#datepickerSearchBerita").on("changeDate", function() {
+$("#datepickerSearchBerita").on("changeDate", function () {
   var tglPencarianBerita = $("#datepickerSearchBerita").datepicker(
     "getFormattedDate"
   );
@@ -34,7 +36,7 @@ $("#datepickerSearchBerita").on("changeDate", function() {
       searchBerita: 1,
       tglPencarianBerita: tglPencarianBerita
     },
-    success: function(response) {
+    success: function (response) {
       console.log(response);
 
       $("#hasilPencarianBerita")
@@ -50,7 +52,7 @@ $("#datepickerSearchBerita").on("changeDate", function() {
 //   }
 // });
 
-$(".input-komentar").keydown(function(e) {
+$(".input-komentar").keydown(function (e) {
   if (e.keyCode == 13 && !e.shiftKey) {
     e.preventDefault();
 
@@ -67,7 +69,7 @@ $(".input-komentar").keydown(function(e) {
         idinfo: idinfo,
         val: val
       },
-      success: function(response) {
+      success: function (response) {
         location.reload();
 
         // $("#hasilPencarianBerita")
@@ -79,7 +81,7 @@ $(".input-komentar").keydown(function(e) {
 });
 
 $(".reply-listener")
-  .mouseenter(function() {
+  .mouseenter(function () {
     $(this)
       .find(".btn-reply-container")
       .append(
@@ -88,7 +90,7 @@ $(".reply-listener")
 
     var replyEl = $(this);
 
-    $(".btn-reply").click(function() {
+    $(".btn-reply").click(function () {
       // alert(
       //   $(replyEl)
       //     .parent()
@@ -103,13 +105,13 @@ $(".reply-listener")
         .toggleClass("d-none");
     });
   })
-  .mouseleave(function() {
+  .mouseleave(function () {
     $(this)
       .find(".btn-reply")
       .remove();
   });
 
-$(".reply-komen-input").keydown(function(e) {
+$(".reply-komen-input").keydown(function (e) {
   if (e.keyCode == 13 && !e.shiftKey) {
     e.preventDefault();
 
@@ -130,7 +132,7 @@ $(".reply-komen-input").keydown(function(e) {
         idkomentar: idkomentar,
         val: val
       },
-      success: function(response) {
+      success: function (response) {
         location.reload();
 
         // $("#hasilPencarianBerita")
